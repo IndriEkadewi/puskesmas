@@ -26,8 +26,8 @@
                             <th scope="row"><?= $a++; ?></th>
                             <td><?= $k['kategori']; ?></td>
                             <td>
-                                <a href="<?= base_url('buku/ubahkategori/') . $k['id']; ?>" class="badge badge-info"><i class="fas fa-edit"></i> Ubah</a>
-                                <a href="<?= base_url('buku/hapuskategori/') . $k['id']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= $judul . ' ' . $k['kategori']; ?> ?');" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                <a href="<?= base_url('poli/ubahkategori/') . $k['id']; ?>" class="badge badge-info"><i class="fas fa-edit"></i> Ubah</a>
+                                <a href="<?= base_url('poli/hapuskategori/') . $k['id']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= $judul . ' ' . $k['kategori']; ?> ?');" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -52,7 +52,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('buku/kategori'); ?>" method="post">
+            <form action="<?= base_url('poli/kategori'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" name="kategori" id="kategori" placeholder="Masukkan Nama Kategori" class="form-control form-control-user">
@@ -66,4 +66,4 @@
         </div>
     </div>
 </div>
-<!-- End of Modal Tambah Mneu -->
+<!-- End of Modal Tambah Menu -->

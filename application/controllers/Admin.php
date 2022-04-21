@@ -19,13 +19,10 @@ class Admin extends CI_Controller{
     $detail = $this->db->query("SELECT * FROM booking, booking_detail WHERE DAY(curdate()) < DAY(batas_ambil) AND booking.id_booking=booking_detail.id_booking")->result_array();
 
     foreach ($detail as $key) {
-      $id_buku    = $key['id_poli'];
-      $batas      = $key['tgl_booking'];
-      $tglawal    = date_create($batas);
+      $id_poli    = $key['id_poli'];
       $tglskrg    = date_create();
-      $beda       = date_diff($tglawal,$tglskrg);
-      if ($beda->days > 2) {
-          $this->db->query("UPDATE buku SET stok=stok+1, dibooking=dibooking-1 WHERE id='$id_buku'");
+      {
+          $this->db->query("UPDATE poli SET stok=stok+1, dibooking=dibooking-1 WHERE id='$id_poli'");
       }
   }
 
@@ -38,7 +35,7 @@ class Admin extends CI_Controller{
       $tglskrg        = date_create();
       $beda           = date_diff($tglawal, $tglskrg);
 
-      if ($beda->days > 2) {
+      if ($beda->days > 0) {
           $this->db->query("DELETE FROM booking WHERE id_booking='$id_booking'");
           $this->db->query("DELETE FROM booking_detail WHERE id_booking='$id_booking'");
       }

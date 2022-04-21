@@ -6,7 +6,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-book"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Pustaka Booking</div>
+    <div class="sidebar-brand-text mx-3">Puskesmas</div>
   </a>
 
 <!-- Divider -->
@@ -37,19 +37,19 @@
   <li class="nav-item active">
 <!-- Nav Item - Dashboard -->
   <li class="nav-item ">
-    <a class="nav-link pb-0 text-white" href="<?= base_url('buku/kategori'); ?>">
-      <i class="fa fa-fw fa-book"></i>
-      <span>Kategori Buku</span></a>
-  </li>
-  <li class="nav-item ">
-    <a class="nav-link pb-0 text-white" href="<?= base_url('buku'); ?>">
-      <i class="fa fa-fw fa-book"></i>
-      <span>Data Buku </span></a>
-  </li>
-  <li class="nav-item ">
     <a class="nav-link pb-0 text-white" href="<?= base_url('user/anggota'); ?>">
       <i class="fa fa-fw fa-book"></i>
-      <span>Data Anggota </span></a>
+      <span>Data Pasien</span></a>
+  </li>
+  <li class="nav-item ">
+    <a class="nav-link pb-0 text-white" href="<?= base_url('dokter'); ?>">
+      <i class="fa fa-fw fa-book"></i>
+      <span>Data Dokter </span></a>
+  </li>
+  <li class="nav-item ">
+    <a class="nav-link pb-0 text-white" href="<?= base_url('poli'); ?>">
+      <i class="fa fa-fw fa-book"></i>
+      <span>Data Poliklinik </span></a>
   </li>
 </li>
 <!-- Divider -->
@@ -58,17 +58,8 @@
 <!-- Heading -->
    <div class="sidebar-heading">
     Transaksi
-   </div>
-      <li class="nav-item active">
         <li class="nav-item">
-          <a href="<?= base_url('pinjam') ?>" class="nav-link pb-0 text-white">
-           <i class="fa fa-fw fa-shopping-cart"></i>
-           <span>Data Peminjaman</span>
-         </a>
-        </li>
-
-        <li class="nav-item">
-          <a href="<?= base_url('pinjam/daftarBooking') ?>" class="nav-link pb-0 text-white">
+          <a href="<?= base_url('booking/daftarBooking') ?>" class="nav-link pb-0 text-white">
             <i class="fa fa-fw fa-list"></i>
               <span>Data Booking</span>
           </a>
@@ -84,21 +75,21 @@
   </div>
   <li class="nav-item active">
     <li class="nav-item">
-        <a href="<?= base_url('laporan/laporan_buku') ?>" class="nav-link pb-0 text-white">
+        <a href="<?= base_url('laporan/laporan_pasien') ?>" class="nav-link pb-0 text-white">
           <i class="fa fa-fw fa-address-book"></i>
-            <span>Laporan Data Buku</span>
+            <span>Laporan Data Pasien</span>
         </a>
     </li>
     <li class="nav-item">
-      <a href="<?= base_url('laporan/laporan_anggota') ?>" class="nav-link pb-0 text-white">
+      <a href="<?= base_url('laporan/laporan_dokter') ?>" class="nav-link pb-0 text-white">
         <i class="fa fa-fw fa-address-book"></i>
-          <span>Laporan Data Anggota</span>
+          <span>Laporan Data Dokter</span>
       </a>
     </li>
     <li class="nav-item">
-      <a href="<?= base_url('laporan/laporan_pinjam') ?>" class="nav-link pb-0 text-white">
+      <a href="<?= base_url('laporan/laporan_poli') ?>" class="nav-link pb-0 text-white">
         <i class="fa fa-fw fa-address-book"></i>
-          <span>Laporan Peminjaman</span>
+          <span>Laporan Data Poliklinik</span>
       </a>
      </li>
   </li>

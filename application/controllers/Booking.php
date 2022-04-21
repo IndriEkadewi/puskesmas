@@ -37,25 +37,24 @@ class Booking extends CI_Controller {
    }
 
    public function tambahBooking() {
-      $id_buku = $this->uri->segment(3);
+      $id_poli = $this->uri->segment(3);
       // Memilih data buku yang di masukkan ke tabel temp/keranjang melalui variabel $isi
-      $d_buku = $this->db->query("SELECT * FROM buku WHERE id='$id_buku'")->row();
+      $d_poli = $this->db->query("SELECT * FROM poli WHERE id='$id_poli'")->row();
       
       // Data yang akan disimpan ke tabel temp
       $isi = [
-         'id_buku' => $id_buku,
-         'judul_buku' => $d_buku->judul_buku,
+         'id_poli' => $id_poli,
+         'nama_poli' => $d_poli->nama_poli,
          'id_user' => $this->session->userdata('id_user'),
          'email_user' => $this->session->userdata('email'),
          'tgl_booking' => date('Y-m-d H:i:s'),
-         'image' => $d_buku->image,
-         'penulis' => $d_buku->pengarang,
-         'penerbit' => $d_buku->penerbit,
-         'tahun_terbit' => $d_buku->tahun_terbit
+         'image' => $d_poli->image,
+         'nama_dok' => $d_poli->nama_dok,
+         'jam_praktek' => $d_poli->jam_praktek
       ];
 
       // Cek apakah buku yang di klik booking sudah ada di keranjang
-      $temp = $this->ModelBooking->getDataWhere('temp', ['id_buku' => $id_buku])->num_rows();
+      $temp = $this->ModelBooking->getDataWhere('temp', ['id_poli' => $id_poli])->num_rows();
       $userid = $this->session->userdata('id_user');
 
       // Cek jika sudah memasukkan 3 buku untuk dibooking dalam keranjang
@@ -69,14 +68,14 @@ class Booking extends CI_Controller {
          redirect(base_url());
       }
 
-      // Jika buku yang di klik booking sudah ada di keranjang
+      // Jika poli yang di klik booking sudah ada di keranjang
       if ($temp > 0) {
          $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Buku ini sudah anda booking </div>');
          redirect(base_url().'home');
       }
 
-      // Jika buku yang di booking sudah mencapai 3 item
-      if ($tempuser == 3) {
+      // Jika poli yang di booking sudah mencapai 1 item
+      if ($tempuser == 1) {
          $this->session->set_flashdata('pesan','<div class="alert alert-danger alert-message" role="alert">Booking Buku Tidak Boleh Lebih dari 3</div>');
          redirect(base_url().'home');
       }
@@ -92,10 +91,10 @@ class Booking extends CI_Controller {
 
    public function hapusbooking() {
       // Hapus data booking
-      $id_buku = $this->uri->segment(3);
+      $id_poli = $this->uri->segment(3);
       $id_user = $this->session->userdata('id_user');
 
-      $this->ModelBooking->deleteData(['id_buku' => $id_buku], 'temp');
+      $this->ModelBooking->deleteData(['id_poli' => $id_poli], 'temp');
       $kosong = $this->db->query("SELECT * FROM temp WHERE id_user='$id_user'")->num_rows();
 
       if ($kosong < 1) {
@@ -109,13 +108,12 @@ class Booking extends CI_Controller {
    public function bookingSelesai($id_usr) {
       // Menupdate stok dan dibooking di tabel buku saat proses booking diselesaikan
 
-      $this->db->query("UPDATE buku, temp SET buku.dibooking=buku.dibooking+1, buku.stok=buku.stok-1 WHERE buku.id=temp.id_buku");
+      $this->db->query("UPDATE poli, temp SET poli.dibooking=poli.dibooking+1, poli.stok=poli.stok-1 WHERE poli.id=temp.id_poli");
 
       $tglsekarang = date('Y-m-d');
       $isibooking = [
          'id_booking' => $this->ModelBooking->kodeOtomatis('booking', 'id_booking'),
          'tgl_booking' => date('Y-m-d H:m:s'),
-         'batas_ambil' => date('Y-m-d', strtotime('+2 days', strtotime($tglsekarang))),
          'id_user' => $id_usr
       ];
 
@@ -133,7 +131,7 @@ class Booking extends CI_Controller {
          'user' => $this->session->userdata('nama'),
          'judul' => 'Selesai Booking',
          'useraktif' => $this->ModelUser->cekData(['id' => $this->session->userdata('id_user')])->result(),
-         'items' => $this->db->query("SELECT * FROM booking bo, booking_detail d, buku bu WHERE d.id_booking=bo.id_booking AND d.id_buku=bu.id AND bo.id_user='$id_usr'")->result_array()
+         'items' => $this->db->query("SELECT * FROM booking bo, booking_detail d, poli bu WHERE d.id_booking=bo.id_booking AND d.id_poli=bu.id AND bo.id_user='$id_usr'")->result_array()
       ];
 
       $this->load->view('templates/templates-user/header', $data);
@@ -149,7 +147,7 @@ class Booking extends CI_Controller {
          'user' => $this->session->userdata('nama'),
          'judul' => 'Cetak'.' '.$filename,
          'useraktif' => $this->ModelUser->cekData(['id' => $this->session->userdata('id_user')])->result(),
-         'items' => $this->db->query("SELECT * FROM booking bo, booking_detail d, buku bu WHERE d.id_booking=bo.id_booking AND d.id_buku=bu.id AND bo.id_user='$id_user'")->result_array()
+         'items' => $this->db->query("SELECT * FROM booking bo, booking_detail d, poli bu WHERE d.id_booking=bo.id_booking AND d.id_poli=bu.id AND bo.id_user='$id_user'")->result_array()
       ];
 
       $this->dompdf_gen->print('booking/bukti-pdf', $data, $filename, 'A4', 'landscape');

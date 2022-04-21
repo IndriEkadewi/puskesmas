@@ -7,11 +7,11 @@
                     <?= validation_errors(); ?>
                 </div>
             <?php } ?>
-            <?php foreach ($buku as $b) { ?>
-                <form action="<?= base_url('buku/ubahBuku'); ?>" method="post" enctype="multipart/form-data">
+            <?php foreach ($poli as $p) { ?>
+                <form action="<?= base_url('poli/ubahPoli'); ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <input type="hidden" name="id" id="id" value="<?php echo $b['id']; ?>">
-                        <input type="text" class="form-control form-control-user" id="judul_buku" name="judul_buku" placeholder="Masukkan Judul Buku" value="<?= $b['judul_buku']; ?>">
+                        <input type="hidden" name="id" id="id" value="<?php echo $p['id']; ?>">
+                        <input type="text" class="form-control form-control-user" id="nama_poli" name="nama_poli" placeholder="Masukkan Nama Poliklinik" value="<?= $p['nama_poli']; ?>">
                     </div>
                     <div class="form-group">
                         <select name="id_kategori" class="form-control form-control-user">
@@ -23,35 +23,29 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="pengarang" name="pengarang" placeholder="Masukkan nama pengarang" value="<?= $b['pengarang']; ?>">
+                        <input type="text" class="form-control form-control-user" id="nama_dok" name="nama_dok" placeholder="Masukkan Nama Dokter" value="<?= $b['pengarang']; ?>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="penerbit" name="penerbit" placeholder="Masukkan nama penerbit" value="<?= $b['penerbit']; ?>">
-                    </div>
-                    <div class="form-group">
-                        <select name="tahun" class="form-control form-control-user">
-                            <option value="<?= $b['tahun_terbit']; ?>"><?= $b['tahun_terbit']; ?></option>
+                        <select name="jam" class="form-control form-control-user">
+                            <option value="<?= $p['jam_praktek']; ?>"><?= $p['jam_praktek']; ?></option>
                             <?php
-                            for ($i = date('Y'); $i > 1500; $i--) { ?>
+                            for ($i = time('T'); $i > 8; $i--) { ?>
                                 <option value="<?= $i; ?>"><?= $i; ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="isbn" name="isbn" placeholder="Masukkan ISBN" value="<?= $b['isbn']; ?>">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="stok" name="stok" placeholder="Masukkan nominal stok" value="<?= $b['stok']; ?>">
+                        <input type="text" class="form-control form-control-user" id="stok" name="stok" placeholder="Masukkan Kuota Periksa" value="<?= $p['stok']; ?>">
                     </div>
                     <div class="form-group">
                         <?php
-                        if (isset($b['image'])) { ?>
+                        if (isset($p['image'])) { ?>
 
-                            <input type="hidden" name="old_pict" id="old_pict" value="<?= $b['image']; ?>">
+                            <input type="hidden" name="old_pict" id="old_pict" value="<?= $p['image']; ?>">
 
                             <picture>
                                 <source srcset="" type="image/svg+xml">
-                                <img src="<?= base_url('assets/img/upload/') . $b['image']; ?>" class="rounded mx-auto mb-3 d-blok" alt="...">
+                                <img src="<?= base_url('assets/img/upload/') . $p['image']; ?>" class="rounded mx-auto mb-3 d-blok" alt="...">
                             </picture>
 
                         <?php } ?>
