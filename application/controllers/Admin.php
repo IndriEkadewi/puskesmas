@@ -15,31 +15,8 @@ class Admin extends CI_Controller{
     $data['anggota'] = $this->ModelUser->getUserLimit()->result_array();
     $data['poli'] = $this->ModelPoli->getPoli()->result_array();
 
-    // Mengupdate stok dan dibooking pada tabel buku
-    $detail = $this->db->query("SELECT * FROM booking, booking_detail WHERE DAY(curdate()) < DAY(batas_ambil) AND booking.id_booking=booking_detail.id_booking")->result_array();
-
-    foreach ($detail as $key) {
-      $id_poli    = $key['id'];
-      $tglskrg    = date_create();
-      {
-          $this->db->query("UPDATE poli SET stok=stok+1, dibooking=dibooking-1 WHERE id='$id_poli'");
-      }
-  }
-
-  // Menghapus otomatis data booking yang sudah lewat dari 2 hari
-  $booking = $this->ModelBooking->getData('booking');
-  if (!empty($booking)) {
-      $id_booking     = $booking->id_booking;
-      $tgl_booking    = $booking->tgl_booking;
-      $tglawal        = date_create($tgl_booking);
-      $tglskrg        = date_create();
-      $beda           = date_diff($tglawal, $tglskrg);
-
-      if ($beda->days > 0) {
-          $this->db->query("DELETE FROM booking WHERE id_booking='$id_booking'");
-          $this->db->query("DELETE FROM booking_detail WHERE id_booking='$id_booking'");
-      }
-  }
+    // Mengupdate stok dan dibooking pada tabel poli
+    
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);

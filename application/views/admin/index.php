@@ -2,8 +2,8 @@
 <div class="container-fluid">
    <!-- row ux-->
    <div class="row">
-      <div class="col-xl-3 col-md-6 mb-4">
-         <div class="card border-left-danger shadow h-100 py-2 bg-primary">
+      <div class="col-xl-4 col-md-6 mb-4">
+         <div class="card border-left-danger shadow h-100 py-2 bg-info">
             <div class="card-body">
                <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
@@ -12,19 +12,19 @@
                         <?= $this->ModelUser->getUserWhere(['role_id' => 2])->num_rows(); ?></div>
                   </div>
                   <div class="col-auto">
-                     <a href="<?= base_url('user/anggota'); ?>"><i class="fas fa-users fa-3x text-warning"></i></a>
+                     <a href="<?= base_url('user/anggota'); ?>"><i class="fas fa-users fa-3x text-danger"></i></a>
                   </div>
                </div>
             </div>
          </div>
       </div>
 
-      <div class="col-xl-3 col-md-6 mb-4">
-         <div class="card border-left-primary shadow h-100 py-2 bg-warning">
+      <div class="col-xl-4 col-md-6 mb-4">
+         <div class="card border-left-primary shadow h-100 py-2 bg-secondary">
             <div class="card-body">
                <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
-                     <div class="text-md font-weight-bold text-white text-uppercase mb-1">Kouta Pasien Terdaftar</div>
+                     <div class="text-md font-weight-bold text-white text-uppercase mb-1">Kuota Pasien Terdaftar</div>
                      <div class="h1 mb-0 font-weight-bold text-white">
                         <?php
                         $where = ['stok != 0'];
@@ -33,14 +33,14 @@
                      </div>
                   </div>
                   <div class="col-auto">
-                     <a href="<?= base_url('poli'); ?>"><i class="fas fa-book fa-3x text-primary"></i></a>
+                     <a href="<?= base_url('poli'); ?>"><i class="fas fa-book fa-3x text-warning"></i></a>
                   </div>
                </div>
             </div>
          </div>
       </div>
-      <div class="col-xl-3 col-md-6 mb-4">
-         <div class="card border-left-warning shadow h-100 py-2 bg-success">
+      <div class="col-xl-4 col-md-6 mb-4">
+         <div class="card border-left-warning shadow h-100 py-2 bg-danger">
             <div class="card-body">
                <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
@@ -53,7 +53,7 @@
                      </div>
                   </div>
                   <div class="col-auto">
-                     <a href="<?= base_url('pinjam/daftarBooking'); ?>"><i class="fas fa-shopping-cart fa-3x text-danger"></i></a>
+                     <a href="<?= base_url('pinjam/daftarBooking'); ?>"><i class="fas fa-shopping-cart fa-3x text-warning"></i></a>
                   </div>
                </div>
             </div>
@@ -102,34 +102,30 @@
    </div>
    <div class="table-responsive table-bordered col-sm-5 ml-auto mr-auto mt-2">
       <div class="page-header">
-         <span class="fas fa-book text-warning mt-2"> Data Buku</span>
-         <a href="<?= base_url('buku'); ?>"><i class="fas fa-search text-primary mt-2 float-right"> Tampilkan</i></a>
+         <span class="fas fa-book text-warning mt-2"> Data Poliklinik</span>
+         <a href="<?= base_url('poli'); ?>"><i class="fas fa-search text-primary mt-2 float-right"> Tampilkan</i></a>
       </div>
       <div class="table-responsive">
          <table class="table mt-3" id="table-datatable">
             <thead>
                <tr>
                   <th>#</th>
-                  <th>Judul Buku</th>
-                  <th>Pengarang</th>
-                  <th>Penerbit</th>
-                  <th>Tahun Terbit</th>
-                  <th>ISBN</th>
-                  <th>Stok</th>
+                  <th>Nama Poliklinik</th>
+                  <th>Nama Dokter</th>
+                  <th>Jadwal Prakter</th>
+                  <th>Kuota Periksa</th>
                </tr>
             </thead>
             <tbody>
                <?php
                $i = 1;
-               foreach ($buku as $b) { ?>
+               foreach ($poli as $p) { ?>
                   <tr>
                      <td><?= $i++; ?></td>
-                     <td><?= $b['judul_buku']; ?></td>
-                     <td><?= $b['pengarang']; ?></td>
-                     <td><?= $b['penerbit']; ?></td>
-                     <td><?= $b['tahun_terbit']; ?></td>
-                     <td><?= $b['isbn']; ?></td>
-                     <td><?= $b['stok']; ?></td>
+                     <td><?= $p['nama_poli']; ?></td>
+                     <td><?= $p['nama_dok']; ?></td>
+                     <td><?= $p['jam_praktek']; ?></td>
+                     <td><?= $p['stok']; ?></td>
                   </tr>
                <?php } ?>
             </tbody>

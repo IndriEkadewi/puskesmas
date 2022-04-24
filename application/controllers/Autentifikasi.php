@@ -117,6 +117,11 @@ class Autentifikasi extends CI_Controller
       $email = $this->input->post('email', true);
       $data = [
         'nama' => htmlspecialchars($this->input->post('nama', true)),
+        'nik' => htmlspecialchars($this->input->post('nik', true)),
+        'ttl' => htmlspecialchars($this->input->post('ttl', true)),
+        'no_telp' => htmlspecialchars($this->input->post('no_telp', true)),
+        'jenis_kel' => htmlspecialchars($this->input->post('jenis_kel', true)),
+        'alamat' => htmlspecialchars($this->input->post('alamat', true)),
         'email' => htmlspecialchars($email),
         'image' => 'default.jpg',
         'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),

@@ -15,7 +15,7 @@
                         <th scope="col">Nama Poliklinik</th>
                         <th scope="col">Nama Dokter</th>
                         <th scope="col">Kuota Periksa</th>
-                        <th scope="col">Jam Praktek</th>
+                        <th scope="col">Jadwal Praktek</th>
                         <th scope="col">Dibooking</th>
                         <th scope="col">Gambar</th>
                         <th scope="col">Pilihan</th>

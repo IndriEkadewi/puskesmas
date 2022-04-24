@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Buku extends CI_Controller
+class Poli extends CI_Controller
 {
     public function __construct()
     {
@@ -9,7 +9,7 @@ class Buku extends CI_Controller
         cek_login();
     }
 
-    //manajemen Buku
+    //manajemen Poli
     Public function index()
     {
         $email  = $this->session->userdata('email');

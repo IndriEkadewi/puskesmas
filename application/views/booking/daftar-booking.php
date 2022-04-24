@@ -9,8 +9,6 @@
                         <th>Tanggal Booking</th>
                         <th>ID User</th>
                         <th>Aksi</th>
-                        <th>Denda / Buku / Hari</th>
-                        <th>Lama Pinjam</th>
                     </tr>
 
                     <?php $no = 1; foreach($pinjam as $p) { ?>

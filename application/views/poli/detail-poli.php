@@ -11,15 +11,15 @@
               <table class="table table-striped">
                 <tr>
                   <th nowrap>Nama Dokter: </th>
-                  <td nowrap><?= $poli->nama_dok; ?></td>
+                  <td nowrap><?= $dokter->nama_dok; ?></td>
                   <td>&nbsp;</td>
                   <th>Dibooking: </th>
-                  <td><?= $buku->dibooking ?></td>
+                  <td><?= $poli->dibooking ?></td>
                 </tr>
 
                 <tr>
-                  <th nowrap>Tahun Terbit: </th>
-                  <td><?= substr($buku->tahun_terbit, 0, 4) ?></td>
+                  <th nowrap>Jadwal Praktek: </th>
+                  <td nowrap><?= $dokter->jam_praktek; ?></td>
                   <td>&nbsp;</td>
                   <th>Tersedia: </th>
                   <td><?= $poli->stok ?></td>
