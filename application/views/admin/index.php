@@ -7,7 +7,7 @@
             <div class="card-body">
                <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
-                     <div class="text-md font-weight-bold text-white text-uppercase mb-1">Jumlah Anggota</div>
+                     <div class="text-md font-weight-bold text-white text-uppercase mb-1">Jumlah Pasien</div>
                      <div class="h1 mb-0 font-weight-bold text-white">
                         <?= $this->ModelUser->getUserWhere(['role_id' => 2])->num_rows(); ?></div>
                   </div>
@@ -24,37 +24,16 @@
             <div class="card-body">
                <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
-                     <div class="text-md font-weight-bold text-white text-uppercase mb-1">Stok Buku Terdaftar</div>
+                     <div class="text-md font-weight-bold text-white text-uppercase mb-1">Kouta Pasien Terdaftar</div>
                      <div class="h1 mb-0 font-weight-bold text-white">
                         <?php
                         $where = ['stok != 0'];
-                        $totalstok = $this->ModelBuku->total('stok', $where); echo $totalstok;
+                        $totalstok = $this->ModelPoli->total('stok', $where); echo $totalstok;
                         ?>
-                           
                      </div>
                   </div>
                   <div class="col-auto">
-                     <a href="<?= base_url('buku'); ?>"><i class="fas fa-book fa-3x text-primary"></i></a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="col-xl-3 col-md-6 mb-4">
-         <div class="card border-left-success shadow h-100 py-2 bg-danger">
-            <div class="card-body">
-               <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                     <div class="text-md font-weight-bold text-white text-uppercase mb-1">Buku yang dipinjam</div>
-                     <div class="h1 mb-0 font-weight-bold text-white">
-                        <?php
-                        $where = ['dipinjam != 0'];
-                        $totaldipinjam = $this->ModelBuku->total('dipinjam', $where); echo $totaldipinjam;
-                        ?>  
-                     </div>
-                  </div>
-                  <div class="col-auto">
-                     <a href="<?= base_url('pinjam'); ?>"><i class="fas fa-user-tag fa-3x text-success"></i></a>
+                     <a href="<?= base_url('poli'); ?>"><i class="fas fa-book fa-3x text-primary"></i></a>
                   </div>
                </div>
             </div>
@@ -65,11 +44,11 @@
             <div class="card-body">
                <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
-                     <div class="text-md font-weight-bold text-white text-uppercase mb-1">Buku yang dibooking</div>
+                     <div class="text-md font-weight-bold text-white text-uppercase mb-1">Poli yang dibooking</div>
                      <div class="h1 mb-0 font-weight-bold text-white">
                         <?php
                         $where = ['dibooking !=0'];
-                        $totaldibooking = $this->ModelBuku->total('dibooking', $where); echo $totaldibooking;
+                        $totaldibooking = $this->ModelPoli->total('dibooking', $where); echo $totaldibooking;
                         ?>
                      </div>
                   </div>

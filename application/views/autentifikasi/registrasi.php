@@ -6,7 +6,7 @@
                 <div class="col-lg">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb4">Daftar Menjadi Member</h1>
+                            <h1 class="h4 text-gray-900 mb4">Daftar Menjadi Pasien</h1>
                         </div>
                         <form class="user" method="post" action="<?= base_url('autentifikasi/registrasi'); ?>">
                             <div class="form-group">
@@ -15,15 +15,36 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="alamat" placeholder="Alamat Anda" name="alamat" value="<?=set_value('alamat'); ?>">
-                                <?= form_error('alamat','<small class="text-danger pl-3">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user" id="nik" placeholder="Masukkan NIK Anda" name="nik" value="<?=set_value('nik'); ?>">
+                                <?= form_error('nik','<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="email" placeholder="Alamat Email" name="email" value="<?=set_value('email'); ?>">
+                                <input type="text" class="form-control form-control-user" id="ttl" placeholder="Masukkan Tanggal-Bulan-Tahun Lahir" name="ttl" value="<?=set_value('ttl'); ?>">
+                                <?= form_error('ttl','<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="email" placeholder="Masukkan Alamat Email Anda" name="email" value="<?=set_value('email'); ?>">
                                 <?= form_error('email','<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
 
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="no_telp" placeholder="Masukan NO Telepon" name="no_telp" value="<?=set_value('no_telp'); ?>">
+                                <?= form_error('no_telp','<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="jenis_kel" placeholder="Masukan Jenis Kelamin Anda" name="jenis_kel" value="<?=set_value('jenis_kel'); ?>">
+                                <?= form_error('jenis_kel','<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="alamat" placeholder="Masukan Alamat Lengkap" name="alamat" value="<?=set_value('alamat'); ?>">
+                                <?= form_error('alamat','<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+
+        
                             <div class="form-group row">
                                 <div class="col-se-6 mb-3 mb-sm0">
                                     <input type="password" class="form-control form-control-user" id="password1" placeholder="Password" name="password1">
@@ -36,7 +57,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                            Daftar Menjadi Member
+                            Daftar Menjadi Pasien
                         </button>
                     </form>
                     <hr>
@@ -44,7 +65,7 @@
                         <a class="small" href="<?= base_url('autentifikasi/lupaPassword'); ?>">Lupa Password?</a>
                     </div>
                     <div class="text-center">
-                        Sudah Menjadi Member?<a class="small" href="<?= base_url('autentifikasi'); ?>">Login!</a>
+                        Sudah Menjadi Pasien?<a class="small" href="<?= base_url('autentifikasi'); ?>">Login!</a>
                     </div>
                 </div>
             </div>

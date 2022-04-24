@@ -24,7 +24,6 @@
                   <th>Tersedia: </th>
                   <td><?= $poli->stok ?></td>
                 </tr>
-
               </table>
             </center>
 

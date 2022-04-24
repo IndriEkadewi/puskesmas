@@ -11,7 +11,7 @@ class Home extends CI_Controller {
          $user = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
          $data = [
             'judul' => 'Puskesmas',
-            'user' => $user['id_user'],
+            'user' => $user['nama'],
             'poli' => $this->ModelPoli->getPoli()->result()
          ];
 
