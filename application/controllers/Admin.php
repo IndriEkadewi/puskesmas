@@ -19,7 +19,7 @@ class Admin extends CI_Controller{
     $detail = $this->db->query("SELECT * FROM booking, booking_detail WHERE DAY(curdate()) < DAY(batas_ambil) AND booking.id_booking=booking_detail.id_booking")->result_array();
 
     foreach ($detail as $key) {
-      $id_poli    = $key['id_poli'];
+      $id_poli    = $key['id'];
       $tglskrg    = date_create();
       {
           $this->db->query("UPDATE poli SET stok=stok+1, dibooking=dibooking-1 WHERE id='$id_poli'");
