@@ -1,6 +1,6 @@
-<?= $this->session->flashdata('pesan'); ?>
+<? ?>
 
-<div style="padding: 35px;">
+<div style="padding: 25px;">
   <div class="x-panel">
     <div class="x_content">
       <!-- Tampilkan Semua Produk -->
@@ -9,7 +9,7 @@
         <?php foreach ($poli as $poli) { ?>
           <div class="col-md-2 col-md-3 mb-4">
             <div class="thumbnail" style="height: 370px;">
-              <img src="<?= base_url('assets/img/upload/') . $poli->image; ?>" style="max-width:100%; max-height: 100%; height: 300px; width: 280px;">
+              <img src="<?= base_url('assets/img/upload/') . $poli->image; ?>" style="max-width:100%; max-height: 100%; height: 330px; width: 380px;">
               <div class="caption">
                 <h5 class="mt-3" style="min-height: 40px"><?= $poli->nama_poli ?></h5>
                 <p>
