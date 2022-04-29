@@ -23,16 +23,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="nama_dok" name="nama_dok" placeholder="Masukkan Nama Dokter" value="<?= $b['pengarang']; ?>">
+                        <input type="text" class="form-control form-control-user" id="nama_dok" name="nama_dok" placeholder="Masukkan Nama Dokter" value="<?= $p['nama_dok']; ?>">
                     </div>
                     <div class="form-group">
-                        <select name="jam" class="form-control form-control-user">
-                            <option value="<?= $p['jam_praktek']; ?>"><?= $p['jam_praktek']; ?></option>
-                            <?php
-                            for ($i = time('T'); $i > 8; $i--) { ?>
-                                <option value="<?= $i; ?>"><?= $i; ?></option>
-                            <?php } ?>
-                        </select>
+                        <input type="text" class="form-control form-control-user" id="jam_praktek" name="jam_praktek" placeholder="Masukkan Jam Praktek" value="<?= $p['jam_praktek']; ?>">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="stok" name="stok" placeholder="Masukkan Kuota Periksa" value="<?= $p['stok']; ?>">

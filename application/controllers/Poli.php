@@ -17,6 +17,7 @@ class Poli extends CI_Controller
             'judul'     => "Data Poliklinik",
             'user'      => $this->db->get_where('user', ['email' => $email])->row_array(),
             'poli'      => $this->ModelPoli->getPoli()->result_array(),
+            'dokter'  => $this->ModelPoli->getDokter()->result_array(),
             'kategori'  => $this->ModelPoli->getKategori()->result_array()
         ];
         $this->_rules();
@@ -46,14 +47,9 @@ class Poli extends CI_Controller
             }
             $data = [
                 'nama_poli'    => $this->input->post('nama_poli', true),
-                'id_kategori'   => $this->input->post('id_kategori', true),
-
-                'pengarang'     => $this->input->post('pengarang', true),
-                'penerbit'      => $this->input->post('penerbit', true),
-                'tahun_terbit'  => $this->input->post('tahun', true),
-                'isbn'          => $this->input->post('isbn', true),
+                'nama_dok'     => $this->input->post('nama_dok', true),
+                'jam_praktek'  => $this->input->post('jam_praktek', true),
                 'stok'          => $this->input->post('stok', true),
-                'dipinjam'      => 0,
                 'dibooking'     => 0,
                 'image'         => $gambar
             ];
@@ -79,7 +75,7 @@ class Poli extends CI_Controller
         ];
         $kategori = $this->ModelPoli->joinKategoriPoli(['poli.id' => $this->uri->segment(3)])->result_array();
         foreach ($kategori as $k) {
-            $data['id'] = $k['id_kategori'];
+            $data['id'] = $k['id'];
             $data['k']  = $k['kategori'];
         }
         $data['kategori'] = $this->ModelPoli->getKategori()->result_array();
@@ -111,13 +107,11 @@ class Poli extends CI_Controller
             }
             $data = [
                 'nama_poli'    => $this->input->post('nama_poli', true),
-                'id'   => $this->input->post('id_kategori', true),
-
-                'pengarang'     => $this->input->post('pengarang', true),
-                'penerbit'      => $this->input->post('penerbit', true),
-                'tahun_terbit'  => $this->input->post('tahun', true),
-                'isbn'          => $this->input->post('isbn', true),
+                'id_kategori'   => $this->input->post('id_kategori', true),
+                'nama_dok'     => $this->input->post('nama_dok', true),
+                'jam_praktek'  => $this->input->post('jam_praktek', true),
                 'stok'          => $this->input->post('stok', true),
+                'dibooking'     => 0,
                 'image'         => $gambar
             ];
             $this->ModelPoli->updatePoli($data, ['id' => $this->input->post('id')]);
@@ -125,68 +119,137 @@ class Poli extends CI_Controller
         }
     }
 
-
-    //manajemen kategori
-    public function kategori()
+     //manajemen kategori
+     public function kategori()
+     {
+         $data['judul'] = 'Kategori Poliklinik';
+         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+         $data['kategori'] = $this->ModelPoli->getKategori()->result_array();
+ 
+         $this->form_validation->set_rules('kategori', 'Kategori', 'required', [
+             'required' => 'Nama Poli harus diisi'
+         ]);
+ 
+         if ($this->form_validation->run() == false) {
+             $this->load->view('templates/header', $data);
+             $this->load->view('templates/sidebar', $data);
+             $this->load->view('templates/topbar', $data);
+             $this->load->view('poli/kategori', $data);
+             $this->load->view('templates/footer');
+         } else {
+             $data = [
+                 'kategori' => $this->input->post('kategori', TRUE)
+             ];
+ 
+             $this->ModelPoli->simpanKategori($data);
+             redirect('poli/kategori');
+         }
+     }
+ 
+     public function ubahKategori()
+     {
+         $data['judul'] = 'Ubah Data Kategori';
+         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+         $data['kategori'] = $this->ModelPoli->kategoriWhere(['id' => $this->uri->segment(3)])->result_array();
+ 
+ 
+         $this->form_validation->set_rules('kategori', 'Nama Kategori', 'required|min_length[3]', [
+             'required' => 'Nama Kategori harus diisi',
+             'min_length' => 'Nama Kategori terlalu pendek'
+         ]);
+ 
+         if ($this->form_validation->run() == false) {
+             $this->load->view('templates/header', $data);
+             $this->load->view('templates/sidebar', $data);
+             $this->load->view('templates/topbar', $data);
+             $this->load->view('poli/ubah_kategori', $data);
+             $this->load->view('templates/footer');
+         } else {
+ 
+             $data = [
+                 'kategori' => $this->input->post('kategori', true)
+             ];
+ 
+             $this->ModelPoli->updateKategori(['id' => $this->input->post('id')], $data);
+             redirect('poli/kategori');
+         }
+     }
+ 
+     public function hapusKategori()
+     {
+         $where = ['id' => $this->uri->segment(3)];
+         $this->ModelPoli->hapusKategori($where);
+         redirect('poli/kategori');
+     } 
+     
+    //manajemen dokter
+    public function dokter()
     {
-        $data['judul'] = 'Kategori Poliklinik';
+        $data['judul'] = 'Data Dokter';
         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['dokter'] = $this->ModelPoli->getDokter()->result_array();
+
+        $this->form_validation->set_rules('dokter', 'Dokter', 'required', [
+            'required' => 'Nama Dokter harus diisi'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('poli/dokter', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'nama_dok' => $this->input->post('nama_dok', TRUE),
+                'nama_poli' => $this->input->post('nama_poli', TRUE),
+            ];
+
+            $this->ModelPoli->simpanDokter($data);
+            redirect('poli/dokter');
+        }
+    }
+
+    public function ubahDokter()
+    {
+        $data['judul'] = 'Ubah Data Dokter';
+        $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['dokter'] = $this->ModelPoli->dokterWhere(['id' => $this->uri->segment(3)])->result_array();
+
+        $kategori = $this->ModelPoli->joinKategoriPoli(['poli.id' => $this->uri->segment(3)])->result_array();
+        foreach ($kategori as $k) {
+            $data['id'] = $k['id'];
+            $data['k']  = $k['kategori'];
+        }
         $data['kategori'] = $this->ModelPoli->getKategori()->result_array();
 
-        $this->form_validation->set_rules('kategori', 'Kategori', 'required', [
-            'required' => 'Nama Poli harus diisi'
+        $this->form_validation->set_rules('dokter', 'Nama dokter', 'required|min_length[3]', [
+            'required' => 'Nama dokter harus diisi',
+            'min_length' => 'Nama dokter terlalu pendek'
         ]);
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('poli/kategori', $data);
+            $this->load->view('poli/ubah_dokter', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'kategori' => $this->input->post('kategori', TRUE)
+                'nama_dok' => $this->input->post('nama_dok', TRUE),
+                'nama_poli' => $this->input->post('nama_poli', TRUE),
             ];
 
-            $this->ModelPoli->simpanKategori($data);
-            redirect('poli/kategori');
+            $this->ModelPoli->updateDokter(['id' => $this->input->post('id')], $data);
+            redirect('poli/dokter');
         }
     }
 
-    public function ubahKategori()
-    {
-        $data['judul'] = 'Ubah Data Kategori';
-        $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
-        $data['kategori'] = $this->ModelPoli->kategoriWhere(['id' => $this->uri->segment(3)])->result_array();
-
-
-        $this->form_validation->set_rules('kategori', 'Nama Kategori', 'required|min_length[3]', [
-            'required' => 'Nama Kategori harus diisi',
-            'min_length' => 'Nama Kategori terlalu pendek'
-        ]);
-
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('poli/ubah_kategori', $data);
-            $this->load->view('templates/footer');
-        } else {
-
-            $data = [
-                'kategori' => $this->input->post('kategori', true)
-            ];
-
-            $this->ModelPoli->updateKategori(['id' => $this->input->post('id')], $data);
-            redirect('poli/kategori');
-        }
-    }
-
-    public function hapusKategori()
+    public function hapusDokter()
     {
         $where = ['id' => $this->uri->segment(3)];
-        $this->ModelPoli->hapusKategori($where);
-        redirect('buku/kategori');
+        $this->ModelPoli->hapusDokter($where);
+        redirect('poli/dokter');
     }
 
     private function _rules()

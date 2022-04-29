@@ -42,7 +42,7 @@
       <span>Data Pasien</span></a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link pb-0 text-white" href="<?= base_url('dokter'); ?>">
+    <a class="nav-link pb-0 text-white" href="<?= base_url('poli/dokter'); ?>">
       <i class="fa fa-fw fa-book"></i>
       <span>Data Dokter </span></a>
   </li>
@@ -58,41 +58,43 @@
 <!-- Heading -->
    <div class="sidebar-heading">
     Transaksi
-        <li class="nav-item">
-          <a href="<?= base_url('booking/daftarBooking') ?>" class="nav-link pb-0 text-white">
-            <i class="fa fa-fw fa-list"></i>
-              <span>Data Booking</span>
-          </a>
-        </li>
-      </li>
+   </div>
+<!-- Nav Item - transaksi -->
+<li class="nav-item active">
+<!-- Nav Item - transaksi -->
+<li class="nav-item">
+  <a href="<?= base_url('booking/daftarBooking') ?>" class="nav-link pb-0 text-white">
+  <i class="fa fa-fw fa-list"></i> <span>Data Booking</span>
+</a>
+</li>
+</li>
 
 <!-- Divider -->
   <hr class="sidebar-divider mt-3">
 
 <!-- Heading -->
-  <div class="sidebar-heading">
-    Laporan
-  </div>
+<div class="sidebar-heading">
+  Laporan
+</div>
+  <!-- Nav Item - laporan -->
   <li class="nav-item active">
-    <li class="nav-item">
-        <a href="<?= base_url('laporan/laporan_pasien') ?>" class="nav-link pb-0 text-white">
-          <i class="fa fa-fw fa-address-book"></i>
-            <span>Laporan Data Pasien</span>
-        </a>
-    </li>
-    <li class="nav-item">
-      <a href="<?= base_url('laporan/laporan_dokter') ?>" class="nav-link pb-0 text-white">
-        <i class="fa fa-fw fa-address-book"></i>
-          <span>Laporan Data Dokter</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="<?= base_url('laporan/laporan_poli') ?>" class="nav-link pb-0 text-white">
-        <i class="fa fa-fw fa-address-book"></i>
-          <span>Laporan Data Poliklinik</span>
-      </a>
-     </li>
+    <!-- Nav Item - laporan -->
+  <li class="nav-item ">
+    <a class="nav-link pb-0 text-white" href="<?= base_url('laporan/laporan_pasien'); ?>">
+      <i class="fa fa-fw fa-address-book"></i><span>Laporan Pasien</span></a>
   </li>
+<li class="nav-item">
+  <a href="<?= base_url('laporan/laporan_dokter') ?>" class="nav-link pb-0 text-white">
+  <i class="fa fa-fw fa-address-book"></i><span>Laporan Dokter</span>
+</a>
+</li>
+<li class="nav-item">
+  <a href="<?= base_url('laporan/laporan_poli') ?>" class="nav-link pb-0 text-white">
+  <i class="fa fa-fw fa-address-book"></i><span>Laporan Poliklinik</span>
+</a>
+</li>
+</li>
+
 <!-- Divider -->
   <hr class="sidebar-divider mt-3">
 
@@ -101,4 +103,6 @@
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
   </div>
 </ul>
+
+
  <!-- End of Sidebar -- >

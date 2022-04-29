@@ -57,10 +57,10 @@ class Booking extends CI_Controller {
       $temp = $this->ModelBooking->getDataWhere('temp', ['id_poli' => $id_poli])->num_rows();
       $userid = $this->session->userdata('id_user');
 
-      // Cek jika sudah memasukkan 3 buku untuk dibooking dalam keranjang
+      // Cek jika sudah memasukkan 1 poli untuk dibooking 
       $tempuser = $this->db->query("SELECT * FROM temp WHERE id_user='$userid'")->num_rows();
 
-      // Cek jika masih ada booking buku yang diambil
+      // Cek jika masih ada booking poli yang diambil
       $databooking = $this->db->query("SELECT * FROM booking WHERE id_user='$userid'")->num_rows();
 
       if ($databooking > 0) {

@@ -7,7 +7,7 @@
                 <?= validation_errors();?>
             </div>
             <?php }?>
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#poliBaruModal"><i class="fas fa-file-alt"></i> Poliklinik Baru</a>
+            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#poliBaruModal"><i class="fas fa-file-alt"></i> TAMBAH POLIKLINIK</a>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group">
                         <select name="id_kategori" class="form-control form-control-user">
-                            <option value="">Pilih Kategori</option> <?php $k = ['Anak','Gigi','Kandungan','Umum']; for ($i=0;$i<9;$i++) { ?> <option value="<?= $k[$i];?>"><?= $k[$i];?></option>
+                            <option value="">Pilih Kategori</option> <?php $k = ['Anak','Gigi','Kandungan','Umum']; for ($i=0;$i<4;$i++) { ?> <option value="<?= $k[$i];?>"><?= $k[$i];?></option>
                         <?php } ?>
                         </select>
                     </div>
@@ -77,12 +77,7 @@
                         <input type="text" class="form-control form-control-user" id="nama_dok" name="nama_dok" placeholder="Masukkan Nama Dokter">
                     </div>
                     <div class="form-group">
-                        <select name="jam" class="form-control form-control-user">
-                            <option value="">Pilih Jam Praktek</option>
-                            <?php for ($i=time('T'); $i > 8 ; $i--) { ?>
-                            <option value="<?= $i;?>"><?= $i;?></option>
-                            <?php } ?>
-                        </select>
+                        <input type="text" class="form-control form-control-user" id="jam_praktek" name="jam_praktek" placeholder="Masukkan Jam Praktek">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="stok" name="stok" placeholder="Masukkan Kuota Periksa">

@@ -80,4 +80,40 @@ class ModelPoli extends CI_Model
         $this->db->limit(1);
         return $this->db->get('poli'); 
     }
+
+    //manajemen dokter
+    public function getDokter()
+    {
+        return $this->db->get('dokter');
+    }
+ 
+    public function dokterWhere($where)
+    {
+        return $this->db->get_where('dokter', $where);
+    }
+ 
+    public function simpanDokter($data = null)
+    {
+        $this->db->insert('dokter', $data);
+    }
+ 
+    public function hapusDokter($where = null)
+    {
+        $this->db->delete('dokter', $where);
+    }
+ 
+    public function updateDokter($where = null, $data = null)
+    {
+        $this->db->update('dokter', $data, $where);
+    }
+    
+    //join
+    public function joinDokterPoli($where)
+    {
+        $this->db->select('*');
+        $this->db->from('poli');
+        $this->db->join('dokter','dokter.id = poli.id');
+        $this->db->where($where);
+        return $this->db->get();
+    }
 }
