@@ -68,12 +68,6 @@
                         <input type="text" class="form-control form-control-user" id="nama_poli" name="nama_poli" placeholder="Masukkan Nama Poliklinik">
                     </div>
                     <div class="form-group">
-                        <select name="id_kategori" class="form-control form-control-user">
-                            <option value="">Pilih Kategori</option> <?php $k = ['Anak','Gigi','Kandungan','Umum']; for ($i=0;$i<4;$i++) { ?> <option value="<?= $k[$i];?>"><?= $k[$i];?></option>
-                        <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="nama_dok" name="nama_dok" placeholder="Masukkan Nama Dokter">
                     </div>
                     <div class="form-group">

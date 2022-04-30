@@ -20,13 +20,13 @@ class ModelBooking extends CI_Model {
       $this->db->select('*');
       $this->db->from('booking bo');
       $this->db->join('booking_detail d', 'd.id_booking=bo.id_booking');
-      $this->db->join('buku bu', 'bu.id=d.id_buku');
+      $this->db->join('poli bu', 'bu.id=d.id_poli');
       $this->db->where($where);
       return $this->db->get();
    }
 
    public function simpanDetail($where = null) {
-      $sql = "INSERT INTO booking_detail (id_booking, id_buku) SELECT booking.id_booking, temp.id_buku FROM booking, temp WHERE temp.id_user=booking.id_user AND booking.id_user='$where'";
+      $sql = "INSERT INTO booking_detail (id_booking, id_poli) SELECT booking.id_booking, temp.id_poli FROM booking, temp WHERE temp.id_user=booking.id_user AND booking.id_user='$where'";
       $this->db->query($sql);
    }
 
@@ -46,7 +46,7 @@ class ModelBooking extends CI_Model {
    public function find($where) {
       // Mencari record berdasarkan id
       $this->db->limit(1);
-      return $this->db->get('buku', $where);
+      return $this->db->get('poli', $where);
    }
 
    public function kosongkanData($table) {
@@ -54,14 +54,14 @@ class ModelBooking extends CI_Model {
    }
 
    public function createTemp() {
-      $this->db->query('CREATE TABLE IF NOT EXISTS temp(id_booking varchar(12), tgl_booking DATETIME, email_user varchar(128), id_buku int)');
+      $this->db->query('CREATE TABLE IF NOT EXISTS temp(id_booking varchar(12), tgl_booking DATETIME, email_user varchar(128), id_poli int)');
    }
 
    public function selectJoin() {
       $this->db->select('*');
       $this->db->from('booking');
       $this->db->join('booking_detail','booking_detail.id_booking=booking.id_booking');
-      $this->db->join('buku','booking_detail.id_buku=buku.id');
+      $this->db->join('poli','booking_detail.id_poli=poli.id');
       return $this->db->get();
    }
 

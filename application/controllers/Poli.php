@@ -18,7 +18,6 @@ class Poli extends CI_Controller
             'user'      => $this->db->get_where('user', ['email' => $email])->row_array(),
             'poli'      => $this->ModelPoli->getPoli()->result_array(),
             'dokter'  => $this->ModelPoli->getDokter()->result_array(),
-            'kategori'  => $this->ModelPoli->getKategori()->result_array()
         ];
         $this->_rules();
 
@@ -73,13 +72,6 @@ class Poli extends CI_Controller
             'user'      => $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array(),
             'poli'      => $this->ModelPoli->poliWhere(['id' => $id])->result_array(),
         ];
-        $kategori = $this->ModelPoli->joinKategoriPoli(['poli.id' => $this->uri->segment(3)])->result_array();
-        foreach ($kategori as $k) {
-            $data['id'] = $k['id'];
-            $data['k']  = $k['kategori'];
-        }
-        $data['kategori'] = $this->ModelPoli->getKategori()->result_array();
-        
         //konfigurasi sebelum gambar diupload
         $config['upload_path']      = './assets/img/upload/';
         $config['allowed_types']    = 'jpg|png|jpeg';
@@ -107,7 +99,6 @@ class Poli extends CI_Controller
             }
             $data = [
                 'nama_poli'    => $this->input->post('nama_poli', true),
-                'id_kategori'   => $this->input->post('id_kategori', true),
                 'nama_dok'     => $this->input->post('nama_dok', true),
                 'jam_praktek'  => $this->input->post('jam_praktek', true),
                 'stok'          => $this->input->post('stok', true),
@@ -119,80 +110,18 @@ class Poli extends CI_Controller
         }
     }
 
-     //manajemen kategori
-     public function kategori()
-     {
-         $data['judul'] = 'Kategori Poliklinik';
-         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
-         $data['kategori'] = $this->ModelPoli->getKategori()->result_array();
- 
-         $this->form_validation->set_rules('kategori', 'Kategori', 'required', [
-             'required' => 'Nama Poli harus diisi'
-         ]);
- 
-         if ($this->form_validation->run() == false) {
-             $this->load->view('templates/header', $data);
-             $this->load->view('templates/sidebar', $data);
-             $this->load->view('templates/topbar', $data);
-             $this->load->view('poli/kategori', $data);
-             $this->load->view('templates/footer');
-         } else {
-             $data = [
-                 'kategori' => $this->input->post('kategori', TRUE)
-             ];
- 
-             $this->ModelPoli->simpanKategori($data);
-             redirect('poli/kategori');
-         }
-     }
- 
-     public function ubahKategori()
-     {
-         $data['judul'] = 'Ubah Data Kategori';
-         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
-         $data['kategori'] = $this->ModelPoli->kategoriWhere(['id' => $this->uri->segment(3)])->result_array();
- 
- 
-         $this->form_validation->set_rules('kategori', 'Nama Kategori', 'required|min_length[3]', [
-             'required' => 'Nama Kategori harus diisi',
-             'min_length' => 'Nama Kategori terlalu pendek'
-         ]);
- 
-         if ($this->form_validation->run() == false) {
-             $this->load->view('templates/header', $data);
-             $this->load->view('templates/sidebar', $data);
-             $this->load->view('templates/topbar', $data);
-             $this->load->view('poli/ubah_kategori', $data);
-             $this->load->view('templates/footer');
-         } else {
- 
-             $data = [
-                 'kategori' => $this->input->post('kategori', true)
-             ];
- 
-             $this->ModelPoli->updateKategori(['id' => $this->input->post('id')], $data);
-             redirect('poli/kategori');
-         }
-     }
- 
-     public function hapusKategori()
-     {
-         $where = ['id' => $this->uri->segment(3)];
-         $this->ModelPoli->hapusKategori($where);
-         redirect('poli/kategori');
-     } 
-     
     //manajemen dokter
     public function dokter()
     {
-        $data['judul'] = 'Data Dokter';
-        $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
-        $data['dokter'] = $this->ModelPoli->getDokter()->result_array();
-
-        $this->form_validation->set_rules('dokter', 'Dokter', 'required', [
-            'required' => 'Nama Dokter harus diisi'
-        ]);
-
+        $email  = $this->session->userdata('email');
+        $data   = [
+            'judul'     => "Data Dokter",
+            'user'      => $this->db->get_where('user', ['email' => $email])->row_array(),
+            'poli'      => $this->ModelPoli->getPoli()->result_array(),
+            'dokter'  => $this->ModelPoli->getDokter()->result_array(),
+        ];
+        $this->_rules();
+        
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -216,12 +145,12 @@ class Poli extends CI_Controller
         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
         $data['dokter'] = $this->ModelPoli->dokterWhere(['id' => $this->uri->segment(3)])->result_array();
 
-        $kategori = $this->ModelPoli->joinKategoriPoli(['poli.id' => $this->uri->segment(3)])->result_array();
-        foreach ($kategori as $k) {
-            $data['id'] = $k['id'];
-            $data['k']  = $k['kategori'];
+        $dokter = $this->ModelPoli->joinDokterPoli(['poli.id' => $this->uri->segment(3)])->result_array();
+        foreach ($dokter as $d) {
+            $data['id'] = $d['id'];
+            $data['d']  = $d['dokter'];
         }
-        $data['kategori'] = $this->ModelPoli->getKategori()->result_array();
+        $data['dokter'] = $this->ModelPoli->getDokter()->result_array();
 
         $this->form_validation->set_rules('dokter', 'Nama dokter', 'required|min_length[3]', [
             'required' => 'Nama dokter harus diisi',
@@ -254,33 +183,19 @@ class Poli extends CI_Controller
 
     private function _rules()
     {
-        $this->form_validation->set_rules('judul_buku', 'Judul Buku', 'required|min_length[3]', [
-            'required'      => 'Judul Buku harus diisi.',
-            'min_length'    => 'Judul buku terlalu pendek.'
+        $this->form_validation->set_rules('nama_poli', 'nama_poli', 'required|min_length[3]', [
+            'required'      => 'Nama Poliklinik harus diisi.',
+            'min_length'    => 'Nama Poliklinik terlalu pendek.'
         ]);
-        $this->form_validation->set_rules('id', 'Kategori', 'required', [
-            'required'      => 'Pilih Kategori buku.',
+        $this->form_validation->set_rules('nama_dok', 'nama_dok', 'required|min_length[3]', [
+            'required'      => 'Nama dokter harus diisi.',
+            'min_length'    => 'Nama dokter terlalu pendek.'
         ]);
-        $this->form_validation->set_rules('pengarang', 'Nama Pengarang', 'required|min_length[3]', [
-            'required'      => 'Nama pengarang harus diisi.',
-            'min_length'    => 'Nama pengarang terlalu pendek.'
+        $this->form_validation->set_rules('jam_praktek', 'jam_praktek', 'required|min_length[3]', [
+            'required'      => 'Jam Praktek harus diisi.',
+            'min_length'    => 'Jam Praktek terlalu pendek.'
         ]);
-        $this->form_validation->set_rules('penerbit', 'Nama Penerbit', 'required|min_length[3]', [
-            'required'      => 'Nama penerbit harus diisi.',
-            'min_length'    => 'Nama penerbit terlalu pendek.'
-        ]);
-        $this->form_validation->set_rules('tahun', 'Tahun Terbit', 'required|min_length[4]|max_length[4]|numeric', [
-            'required'      => 'Tahun terbit harus diisi.',
-            'min_length'    => 'Tahun terbit terlalu pendek.',
-            'max_length'    => 'Tahun terbit terlalu panjang.',
-            'numeric'       => 'Hanya boleh diisi angka.'
-        ]);
-        $this->form_validation->set_rules('isbn', 'Nomor ISBN', 'required|min_length[3]|numeric', [
-            'required'      => 'Nama ISBN harus diisi.',
-            'min_length'    => 'Nama ISBN terlalu pendek.',
-            'numeric'       => 'Yang anda masukan bukan angka.'
-        ]);
-        $this->form_validation->set_rules('stok', 'Stok', 'required|numeric', [
+        $this->form_validation->set_rules('stok', 'stok', 'required|numeric', [
             'required'      => 'Stok harus diisi.',
             'numeric'       => 'Yang anda masukan bukan angka.'
         ]);

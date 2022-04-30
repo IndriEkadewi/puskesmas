@@ -27,7 +27,7 @@ class Booking extends CI_Controller {
          $this->session->set_flashdata('pesan', '<div class="alert alert-message alert-danger" role="alert">Tidak Ada Buku dikeranjang</div>');
          redirect(base_url());
       } else {
-         $data['temp'] = $this->ModelBooking->tempList('image, judul_buku, penulis, penerbit, tahun_terbit, id_buku', ['id_user' => $id_user])->result_array();
+         $data['temp'] = $this->ModelBooking->tempList('image, nama_poli, nama_dok, jam_praktek, id_poli', ['id_user' => $id_user])->result_array();
       }
 
       $this->load->view('templates/templates-user/header', $data);

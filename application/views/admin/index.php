@@ -102,8 +102,8 @@
    </div>
    <div class="table-responsive table-bordered col-sm-5 ml-auto mr-auto mt-2">
       <div class="page-header">
-         <span class="fas fa-book text-warning mt-2"> Data Poliklinik</span>
-         <a href="<?= base_url('poli'); ?>"><i class="fas fa-search text-primary mt-2 float-right"> Tampilkan</i></a>
+         <span class="fas fa-book text-success mt-2"> Data Poliklinik</span>
+         <a href="<?= base_url('poli'); ?>"><i class="fas fa-search text-warning mt-2 float-right"> Tampilkan</i></a>
       </div>
       <div class="table-responsive">
          <table class="table mt-3" id="table-datatable">

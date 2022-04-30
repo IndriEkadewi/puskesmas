@@ -38,13 +38,13 @@ class Home extends CI_Controller {
          $data = [
             'user' => $user['nama'],
             'judul' => 'Detail Poliklinik',
-            'poli' => $this->ModelPoli->joinKategoriPoli(['poli.id' => $id])->result()[0]
+            'poli' => $this->ModelPoli->getPoli()->result()[0]
          ];
       } else {
          $data = [
             'user' => 'Pengunjung',
             'title' => 'Detail Poliklinik',
-            'poli' => $this->ModelPoli->joinKategoriPoli(['poli.id' => $id])->result()
+            'poli' => $this->ModelPoli->getPoli()->result()
          ];
       }
       $this->load->view('templates/templates-user/header', $data);

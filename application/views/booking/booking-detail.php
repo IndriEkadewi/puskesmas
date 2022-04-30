@@ -4,7 +4,7 @@
          <table>
             <?php foreach($agt_booking as $ab) { ?>
             <tr>
-               <td>Data Anggota</td>
+               <td>Data Pasien</td>
                <td> : </td>
                <td><?= $ab['nama'] ?></td>
             </tr>
@@ -22,20 +22,18 @@
          <table class="table table-bordered table-striped table-hover" id="table-datatable"">
             <tr>
                <td>No.</td>
-               <td>ID Buku</td>
-               <td>Judul Buku</td>
-               <td>Pengarang</td>
-               <td>Penerbit</td>
-               <td>Tahun</td>
+               <td>ID Poli</td>
+               <td>Nama PoliKlinik</td>
+               <td>Nama Dokter</td>
+               <td>Jam Praktek</td>
             </tr>
             <?php $no=1; foreach($detail as $d) { ?>
             <tr>
                <td><?= $no++ ?></td>
-               <td><?= $d['id_buku'] ?></td>
-               <td><?= $d['judul_buku'] ?></td>
-               <td><?= $d['pengarang'] ?></td>
-               <td><?= $d['penerbit'] ?></td>
-               <td><?= $d['tahun_terbit'] ?></td>
+               <td><?= $d['id_poli'] ?></td>
+               <td><?= $d['nama_poli'] ?></td>
+               <td><?= $d['nama_dok'] ?></td>
+               <td><?= $d['jam_praktek'] ?></td>
             </tr>
             <?php } ?>
          </table>

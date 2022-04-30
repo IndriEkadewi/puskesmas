@@ -51,9 +51,20 @@
                <div class="form-group">
                   <input type="text" class="form-control form-control-user" name="nama" id="nama" placeholder="Nama Lengkap">
                </div>
-
+               <div class="form-group">
+                  <input type="text" class="form-control form-control-user" name="nik" id="nik" placeholder="NIK">
+               </div>
+               <div class="form-group">
+                  <input type="text" class="form-control form-control-user" name="ttl" id="ttl" placeholder="Tanggal lahir">
+               </div>
                <div class="form-group">
                   <input type="text" class="form-control form-control-user" name="alamat" id="alamat" placeholder="Alamat Lengkap">
+               </div>
+               <div class="form-group">
+                  <input type="text" class="form-control form-control-user" name="jenis_kel" id="jenis_kel" placeholder="Jenis Kelamin">
+               </div>
+               <div class="form-group">
+                  <input type="text" class="form-control form-control-user" name="no_telp" id="no_telp" placeholder="NO Telepon">
                </div>
 
                <div class="form-group">
@@ -88,7 +99,7 @@
          </button>
       </div>
       <div class="modal-body">
-         <span class="alert alert-message alert-success">Waktu Pengambilan Buku 1x24 jam dari Booking!!!</span>
+         <span class="alert alert-message alert-success">Waktu Pendaftaran berlaku 1x24 jam dari Booking!!!</span>
       </div>
       <div class="modal-footer">
          <a href="<?= base_url() ?>" class="btn btn-outline-info">OK</a>

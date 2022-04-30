@@ -14,15 +14,6 @@
                         <input type="text" class="form-control form-control-user" id="nama_poli" name="nama_poli" placeholder="Masukkan Nama Poliklinik" value="<?= $p['nama_poli']; ?>">
                     </div>
                     <div class="form-group">
-                        <select name="id_kategori" class="form-control form-control-user">
-                            <option value="<?= $id; ?>" selected="selected"><?= $k; ?></option>
-                            <?php
-                            foreach ($kategori as $k) { ?>
-                                <option value="<?= $k['id']; ?>"><?= $k['kategori']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="nama_dok" name="nama_dok" placeholder="Masukkan Nama Dokter" value="<?= $p['nama_dok']; ?>">
                     </div>
                     <div class="form-group">
@@ -34,14 +25,11 @@
                     <div class="form-group">
                         <?php
                         if (isset($p['image'])) { ?>
-
                             <input type="hidden" name="old_pict" id="old_pict" value="<?= $p['image']; ?>">
-
                             <picture>
                                 <source srcset="" type="image/svg+xml">
                                 <img src="<?= base_url('assets/img/upload/') . $p['image']; ?>" class="rounded mx-auto mb-3 d-blok" alt="...">
                             </picture>
-
                         <?php } ?>
 
                         <input type="file" class="form-control form-control-user" id="image" name="image">
