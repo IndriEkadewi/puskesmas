@@ -4,30 +4,26 @@
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
-	<h3><center>Laporan Data Buku Perpustakaan Online</center></h3>
+	<h3><center>Laporan Data Poliklinik E-Puskesmas</center></h3>
 	<br/>
 	<table border="1">
-		<thead>
-			<tr>
-				<th>No</th>
-				<th>Judul Buku</th>
-				<th>Pengarang</th>
-				<th>Penerbit</th>
-				<th>Tahun Terbit</th>
-				<th>ISBN</th>
-				<th>Stok</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php $no=1; foreach($buku as $b) { ?>
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nama Poliklinik</th>
+			<th scope="col">Nama Dokter</th>
+			<th scope="col">Jam Praktek</th>
+			<th scope="col">Kuota Pasien</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php $no=1; foreach($poli as $p) { ?>
 			<tr>
 				<th scope="row"><?= $no++ ?></th>
-				<td><?= $b['judul_buku'] ?></td>
-				<td><?= $b['pengarang'] ?></td>
-				<td><?= $b['penerbit'] ?></td>
-				<td><?= $b['tahun_terbit'] ?></td>
-				<td><?= $b['isbn'] ?></td>
-				<td><?= $b['stok'] ?></td>
+				<td><?= $p['nama_poli'] ?></td>
+				<td><?= $p['nama_dok'] ?></td>
+				<td><?= $p['jam_praktek'] ?></td>
+				<td><?= $p['stok'] ?></td>
 			</tr>
 			<?php } ?>
 		</tbody>

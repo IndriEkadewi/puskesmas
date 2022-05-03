@@ -80,7 +80,7 @@
   <li class="nav-item active">
     <!-- Nav Item - laporan -->
   <li class="nav-item ">
-    <a class="nav-link pb-0 text-white" href="<?= base_url('laporan/laporan_pasien'); ?>">
+    <a class="nav-link pb-0 text-white" href="<?= base_url('laporan/laporan_anggota'); ?>">
       <i class="fa fa-fw fa-address-book"></i><span>Laporan Pasien</span></a>
   </li>
 <li class="nav-item">

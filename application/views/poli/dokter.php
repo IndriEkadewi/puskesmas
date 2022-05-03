@@ -8,7 +8,7 @@
                     <?= validation_errors(); ?>
                 </div>
             <?php } ?>
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#dokterBaruModal"><i class="fas fa-file-alt"></i> Tambah Dokter</a>
+            <a href="" class="btn btn-info mb-3" data-toggle="modal" data-target="#dokterBaruModal"><i class="fas fa-file-alt"></i> Tambah Dokter</a>
             <table class="table table-hover">
                 <thead>
                     <tr>

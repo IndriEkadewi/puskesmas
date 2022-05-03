@@ -12,9 +12,9 @@
 
 	<div class="row mb-5">
 		<div class="col-12">
-			<a href="<?= base_url('laporan/cetak_laporan_buku') ?>" class="btn btn-primary mb-3"><i class="fas fa-print"></i> Print</a>
+			<a href="<?= base_url('laporan/cetak_laporan_poli') ?>" class="btn btn-primary mb-3"><i class="fas fa-print"></i> Print</a>
 
-			<a href="<?= base_url('laporan/laporan_buku_pdf') ?>" class="btn btn-warning mb-3"><i class="far fa-file-pdf"></i> Download PDF</a>
+			<a href="<?= base_url('laporan/laporan_poli_pdf') ?>" class="btn btn-warning mb-3"><i class="far fa-file-pdf"></i> Download PDF</a>
 
 			<a href="<?= base_url('laporan/export_excel') ?>" class="btn btn-success mb-3"><i class="far fa-file-excel"></i> Export Excel</a>
 		</div>
@@ -25,25 +25,21 @@
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Judul</th>
-							<th scope="col">Pengarang</th>
-							<th scope="col">Penerbit</th>
-							<th scope="col">Tahun Terbit</th>
-							<th scope="col">ISBN</th>
-							<th scope="col">Stok</th>
+							<th scope="col">Nama Poliklinik</th>
+							<th scope="col">Nama Dokter</th>
+							<th scope="col">Jam Praktek</th>
+							<th scope="col">Kuota Pasien</th>
 						</tr>	
 					</thead>
 
 					<tbody>
-						<?php $no=1; foreach($buku as $b) { ?>
+						<?php $no=1; foreach($poli as $p) { ?>
 						<tr>
 							<th scope="row"><?= $no++ ?></th>
-							<td><?= $b['judul_buku'] ?></td>
-							<td><?= $b['pengarang'] ?></td>
-							<td><?= $b['penerbit'] ?></td>
-							<td><?= $b['tahun_terbit'] ?></td>
-							<td><?= $b['isbn'] ?></td>
-							<td><?= $b['stok'] ?></td>
+							<td><?= $p['nama_poli'] ?></td>
+							<td><?= $p['nama_dok'] ?></td>
+							<td><?= $p['jam_praktek'] ?></td>
+							<td><?= $p['stok'] ?></td>
 						</tr>
 						<?php } ?>
 					</tbody>
