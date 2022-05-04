@@ -22,11 +22,11 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="text-white nav-item nav-link active" href="<?= base_url(); ?>">Beranda <span class="sr-only">(current)</span></a>
+                    <a class="text-white nav-item nav-link" href="<?= base_url('contact'); ?>">Contact</a>
 
                     <?php if (!empty($this->session->userdata('email'))) { ?>
                         <a class="text-white nav-item nav-link" href="<?= base_url('booking') ?>">Booking <b><?= $this->ModelBooking->getDataWhere('temp', ['email_user' => $this->session->userdata('email')])->num_rows(); ?></b> Poliklinik</a>
                         <a class="text-white nav-item nav-link" href="<?= base_url('member/myprofile'); ?>">Profil Saya</a>
-                        <a class="text-white nav-item nav-link" href="<?= base_url('contact'); ?>">Contact</a>
                         <a class="text-white nav-item nav-link" data-toggle="modal" data-target="#modalUserLogout" style="cursor: pointer;"><i class="fas fw fa-login"></i> Logout</a>
                     <?php } else { ?>
                         <a class="text-white nav-item nav-link" data-toggle="modal" data-target="#daftarModal" href="#"><i class="fas fw fa-login"></i> Daftar</a>

@@ -24,7 +24,7 @@ class Contact extends CI_Controller {
               'poli' => $this->ModelPoli->getPoli()->result()
            ];
            $this->load->view('templates/templates-user/header', $data);
-           $this->load->view('user/contact/daftarpoli', $data);
+           $this->load->view('user/contact', $data);
            $this->load->view('templates/templates-user/modal');
            $this->load->view('templates/templates-user/footer', $data);
         }
