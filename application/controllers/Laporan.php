@@ -128,4 +128,44 @@ class Laporan extends CI_Controller {
       $data['namafile'] = 'Laporan Pasien '.date('Y-m-d').'.xls';
       $this->load->view('user/export_excel_anggota', $data);
    }
+
+   public function laporan_dokter() {
+   	$data = [
+   		'judul'		=> 'Laporan Data Dokter',
+   		'user'		=> $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array(),
+   		'dokter'		=> $this->ModelPoli->getDokter()->result_array()
+   	];
+
+   	$this->load->view('templates/header', $data);
+   	$this->load->view('templates/sidebar', $data);
+   	$this->load->view('templates/topbar', $data);
+   	$this->load->view('poli/laporan_dokter', $data);
+   	$this->load->view('templates/footer');
+   }
+
+   public function cetak_laporan_dokter() {
+      $data = [
+         'judul' => 'Laporan Data Dokter',
+         'dokter'		=> $this->ModelPoli->getDokter()->result_array()
+      ];
+
+      $this->load->view('poli/laporan_print_dokter', $data);
+   }
+
+   public function laporan_dokter_pdf() {
+      $data['dokter'] = $this->ModelPoli->getDokter()->result_array();
+      $data['judul'] = 'Cetak PDF Laporan Data Dokter';
+      $filename = uniqid('Laporan_data_dokter-');
+
+      // Dompdf Print
+      $this->dompdf_gen->print('poli/laporan_pdf_dokter', $data, $filename, 'A4', 'landscape');
+   }
+
+   public function export_excel_dokter() {
+      $data['dokter'] = $this->ModelPoli->getDokter()->result_array();
+      $data['judul'] = 'Cetak Excel Laporan Data Dokter';
+      $data['namafile'] = 'Laporan Dokter '.date('Y-m-d').'.xls';
+      $this->load->view('poli/export_excel_dokter', $data);
+   }
+
 }

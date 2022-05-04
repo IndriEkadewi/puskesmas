@@ -39,54 +39,12 @@ class ModelPoli extends CI_Model
         return $this->db->get()->row($field);
     }
 
-    //manajemen kategori
-    public function getKategori()
-    {
-        return $this->db->get('kategori');
-    }
- 
-    public function kategoriWhere($where)
-    {
-        return $this->db->get_where('kategori', $where);
-    }
- 
-    public function simpanKategori($data = null)
-    {
-        $this->db->insert('kategori', $data);
-    }
- 
-    public function hapusKategori($where = null)
-    {
-        $this->db->delete('kategori', $where);
-    }
- 
-    public function updateKategori($where = null, $data = null)
-    {
-        $this->db->update('kategori', $data, $where);
-    }
-    
-    //join
-    public function joinKategoriPoli($where)
-    {
-        $this->db->select('*');
-        $this->db->from('poli');
-        $this->db->join('kategori','kategori.id = poli.id');
-        $this->db->where($where);
-        return $this->db->get();
-    }
-
-    public function getLimitPoli()
-    {
-        $this->db->limit(1);
-        return $this->db->get('poli'); 
-    }
-
     //manajemen dokter
     public function getDokter()
     {
-        return $this->db->get('dokter');
+         return $this->db->get('dokter');
     }
- 
+         
     public function dokterWhere($where)
     {
         return $this->db->get_where('dokter', $where);
@@ -94,26 +52,16 @@ class ModelPoli extends CI_Model
  
     public function simpanDokter($data = null)
     {
-        $this->db->insert('dokter', $data);
+        $this->db->insert('dokter',$data);
+    }
+
+    public function updateDokter($data = null, $where = null)
+    {
+        $this->db->update('dokter', $data, $where);
     }
  
     public function hapusDokter($where = null)
     {
         $this->db->delete('dokter', $where);
-    }
- 
-    public function updateDokter($where = null, $data = null)
-    {
-        $this->db->update('dokter', $data, $where);
-    }
-    
-    //join
-    public function joinDokterPoli($where)
-    {
-        $this->db->select('*');
-        $this->db->from('poli');
-        $this->db->join('dokter','dokter.id = poli.id');
-        $this->db->where($where);
-        return $this->db->get();
     }
 }

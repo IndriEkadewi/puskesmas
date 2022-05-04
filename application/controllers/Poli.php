@@ -110,18 +110,46 @@ class Poli extends CI_Controller
         }
     }
 
-    //manajemen dokter
-    public function dokter()
+    //manajemen Dokter
+    Public function dokter()
     {
         $email  = $this->session->userdata('email');
         $data   = [
             'judul'     => "Data Dokter",
             'user'      => $this->db->get_where('user', ['email' => $email])->row_array(),
-            'poli'      => $this->ModelPoli->getPoli()->result_array(),
             'dokter'  => $this->ModelPoli->getDokter()->result_array(),
         ];
-        $this->_rules();
-        
+        $this->form_validation->set_rules('nama_dok', 'nama_dok', 'required|min_length[3]', [
+            'required'      => 'Nama dokter harus diisi.',
+            'min_length'    => 'Nama dokter terlalu pendek.'
+        ]);
+        $this->form_validation->set_rules('ttl', 'ttl', 'required|min_length[3]', [
+            'required'      => 'tanggal lahir harus diisi.',
+            'min_length'       => 'tanggal lahir tidak valid.'
+        ]);
+        $this->form_validation->set_rules('alamat', 'alamat', 'required|min_length[3]', [
+            'required'      => 'alamat harus diisi.',
+            'min_length'       => 'Yang anda masukan bukan huruf.'
+        ]);
+        $this->form_validation->set_rules('jenis_kel', 'jenis_kel', 'required|min_length[3]', [
+            'required'      => 'Jenis Kelamin harus diisi.',
+            'min_length'       => 'Jenis Kelamin tidak valid.'
+        ]);
+        $this->form_validation->set_rules('email', 'email', 'required|min_length[3]', [
+            'required'      => 'email harus diisi.',
+            'min_length'       => 'email tidak valid.'
+        ]);
+
+        //konfigurasi sebelum gambar diupload
+        $config['upload_path']      = './assets/img/upload/';
+        $config['allowed_types']    = 'jpg|png|jpeg';
+        $config['max_size']         = '3000';
+        $config['max_width']        = '1024';
+        $config['max_height']       = '1000';
+        $config['file_name']        = 'img' . time();
+
+        $this->load->library('upload', $config);
+
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -129,34 +157,71 @@ class Poli extends CI_Controller
             $this->load->view('poli/dokter', $data);
             $this->load->view('templates/footer');
         } else {
+            if ($this->upload->do_upload('image')) {
+                $image  = $this->upload->data();
+                $gambar = $image['file_name'];
+            } else {
+                $gambar = '';
+            }
             $data = [
-                'nama_dok' => $this->input->post('nama_dok', TRUE),
-                'nama_poli' => $this->input->post('nama_poli', TRUE),
+                'nama_dok'     => $this->input->post('nama_dok', true),
+                'ttl'          => $this->input->post('ttl', true),
+                'jenis_kel'    => $this->input->post('jenis_kel', true),
+                'alamat'       => $this->input->post('alamat', true),
+                'email'        => $this->input->post('email', true),
+                'image'        => $gambar
             ];
-
             $this->ModelPoli->simpanDokter($data);
-            redirect('poli/dokter');
+            redirect('poli/dokter', 'refresh');
         }
     }
 
-    public function ubahDokter()
+    function hapusDokter()
     {
-        $data['judul'] = 'Ubah Data Dokter';
-        $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
-        $data['dokter'] = $this->ModelPoli->dokterWhere(['id' => $this->uri->segment(3)])->result_array();
+        $where  = ['id' => $this->uri->segment(3)];
+        $this->ModelPoli->hapusDokter($where);
+        redirect('poli/dokter', 'refresh');
+    }
 
-        $dokter = $this->ModelPoli->joinDokterPoli(['poli.id' => $this->uri->segment(3)])->result_array();
-        foreach ($dokter as $d) {
-            $data['id'] = $d['id'];
-            $data['d']  = $d['dokter'];
-        }
-        $data['dokter'] = $this->ModelPoli->getDokter()->result_array();
+    function ubahDokter()
+    {
+        $id     = $this->uri->segment(3);
+        $data   = [
+            'judul'     => "Ubah Data Dokter",
+            'user'      => $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array(),
+            'dokter'      => $this->ModelPoli->dokterWhere(['id' => $id])->result_array(),
+        ];
 
-        $this->form_validation->set_rules('dokter', 'Nama dokter', 'required|min_length[3]', [
-            'required' => 'Nama dokter harus diisi',
-            'min_length' => 'Nama dokter terlalu pendek'
+        //konfigurasi sebelum gambar diupload
+        $config['upload_path']      = './assets/img/upload/';
+        $config['allowed_types']    = 'jpg|png|jpeg';
+        $config['max_size']         = '3000';
+        $config['max_width']        = '1024';
+        $config['max_height']       = '1000';
+        $config['file_name']        = 'img' . time();
+        
+        //memuat atau memanggil library upload
+        $this->form_validation->set_rules('nama_dok', 'nama_dok', 'required|min_length[3]', [
+            'required'      => 'Nama dokter harus diisi.',
+            'min_length'    => 'Nama dokter terlalu pendek.'
         ]);
-
+        $this->form_validation->set_rules('ttl', 'ttl', 'required|min_length[3]', [
+            'required'      => 'tanggal lahir harus diisi.',
+            'min_length'       => 'tanggal lahir tidak valid.'
+        ]);
+        $this->form_validation->set_rules('alamat', 'alamat', 'required|min_length[3]', [
+            'required'      => 'alamat harus diisi.',
+            'min_length'       => 'Yang anda masukan bukan huruf.'
+        ]);
+        $this->form_validation->set_rules('jenis_kel', 'jenis_kel', 'required|min_length[3]', [
+            'required'      => 'Jenis Kelamin harus diisi.',
+            'min_length'       => 'Jenis Kelamin tidak valid.'
+        ]);
+        $this->form_validation->set_rules('email', 'email', 'required|min_length[3]', [
+            'required'      => 'email harus diisi.',
+            'min_length'       => 'email tidak valid.'
+        ]); 
+        $this->load->library('upload', $config);
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -164,21 +229,24 @@ class Poli extends CI_Controller
             $this->load->view('poli/ubah_dokter', $data);
             $this->load->view('templates/footer');
         } else {
+            if ($this->upload->do_upload('image')) {
+                $image  = $this->upload->data();
+                unlink('assets/img/upload/' . $this->input->post('old_pict', TRUE));
+                $gambar = $image['file_name'];
+            } else {
+                $gambar = $this->input->post('old_pict', TRUE);
+            }
             $data = [
-                'nama_dok' => $this->input->post('nama_dok', TRUE),
-                'nama_poli' => $this->input->post('nama_poli', TRUE),
+                'nama_dok'    => $this->input->post('nama_dok', true),
+                'ttl'         => $this->input->post('ttl', true),
+                'jenis_kel'   => $this->input->post('jenis_kel', true),
+                'alamat'      => $this->input->post('alamat', true),
+                'email'       => $this->input->post('email', true),
+                'image'         => $gambar
             ];
-
-            $this->ModelPoli->updateDokter(['id' => $this->input->post('id')], $data);
-            redirect('poli/dokter');
+            $this->ModelPoli->updateDokter($data, ['id' => $this->input->post('id')]);
+            redirect('poli/dokter', 'refresh');
         }
-    }
-
-    public function hapusDokter()
-    {
-        $where = ['id' => $this->uri->segment(3)];
-        $this->ModelPoli->hapusDokter($where);
-        redirect('poli/dokter');
     }
 
     private function _rules()
@@ -199,5 +267,6 @@ class Poli extends CI_Controller
             'required'      => 'Stok harus diisi.',
             'numeric'       => 'Yang anda masukan bukan angka.'
         ]);
+       
     }
 }

@@ -22,7 +22,7 @@ class User extends CI_Controller
     Public function anggota()
     {
         $data   = [
-            'judul'     => "Data Anggota",
+            'judul'     => "Data Pasien",
             'user'      => $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array(),
             'anggota'   => $this->db->get_where('user', ['role_id' => 2])->result_array()
         ];
