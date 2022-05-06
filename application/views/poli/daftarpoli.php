@@ -18,7 +18,7 @@
                   <?php } else { ?>
                     <a class="btn btn-success fas fw fa-shopping-cart" href="<?= base_url('booking/tambahBooking/' . $pl->id) ?>">Booking</a>
                   <?php } ?>
-                  <a class="text-white btn btn-warning fas fw fa-search" href="<?= base_url('detail-poli/' . $pl->id) ?>">Detail</a>
+                  <a class="text-white btn btn-warning fas fw fa-search" href="<?= base_url('detailPoli/' . $pl->id) ?>">Detail</a>
                 </p>
               </div>
             </div>

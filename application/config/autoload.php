@@ -13,4 +13,4 @@ $autoload['config'] = array();
 
 $autoload['language'] = array();
 
-$autoload['model'] = array('ModelUser','ModelPoli','ModelBooking');
+$autoload['model'] = array('ModelUser','ModelPoli','ModelBooking','ModelPeriksa');

@@ -40,6 +40,7 @@ class Home extends CI_Controller {
             'judul' => 'Detail Poliklinik',
             'poli' => $this->ModelPoli->getPoli()->result()[0]
          ];
+
       } else {
          $data = [
             'user' => 'Pengunjung',

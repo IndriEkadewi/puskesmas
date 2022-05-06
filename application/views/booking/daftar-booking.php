@@ -9,28 +9,25 @@
                         <th>Tanggal Booking</th>
                         <th>ID User</th>
                         <th>Aksi</th>
+                        <th>Waktu Periksa</th>
                     </tr>
 
-                    <?php $no = 1; foreach($pinjam as $p) { ?>
+                    <?php $no = 1; foreach($periksa as $p) { ?>
                     <tr>
                         <td><?= $no++ ?></td>
                         <td>
-                            <a href="<?= base_url('pinjam/bookingdetail/'.$p['id_booking']); ?>" class="btn btn-link">
+                            <a href="<?= base_url('periksa/bookingdetail/'.$p['id_booking']); ?>" class="btn btn-link">
                                 <?= $p['id_booking']; ?>
                             </a>    
                         </td>
                         <td><?= $p['tgl_booking']; ?></td>
                         <td><?= $p['id_user'] ?></td>
-                        <form action="<?= base_url('pinjam/pinjamAct/'.$p['id_booking']) ?>" method="post">
+                        <form action="<?= base_url('periksa/periksaAct/'.$p['id_booking']) ?>" method="post">
                             <td nowrap>
-                                <button type="submit" class="btn btn-sm btn-outline-info"><i class="fas fa-fw fa-cart-plus"></i> Pinjam</button>
+                                <button type="submit" class="btn btn-sm btn-outline-info"><i class="fas fa-fw fa-cart-plus"></i> Periksa</button>
                             </td>
                             <td>
-                                <input type="text" class="form-check-user rounded-sm" style="width: 100px" name="denda" id="denda" value="5000">
-                                <?= form_error() ?>
-                            </td>
-                            <td>
-                                <input type="text" class="form-check-user rounded-sm" style="width: 100px" name="lama" id="lama" value="3">
+                                <input type="text" class="form-check-user rounded-sm" style="width: 100px" name="lama" id="lama" value="1">
                                 <?= form_error() ?>
                             </td>
                         </form>
@@ -39,7 +36,7 @@
                 </table>
             </div>
             <div class="text-center">
-                <a href="<?= base_url('pinjam/daftarbooking') ?>" class="btn btn-link"><i class="fas fa-fw fa-refresh"></i> Refresh</a>
+                <a href="<?= base_url('periksa/daftarBooking') ?>" class="btn btn-link"><i class="fas fa-fw fa-refresh"></i> Refresh</a>
             </div>
         </div>
     </div>

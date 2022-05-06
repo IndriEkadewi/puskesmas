@@ -53,7 +53,7 @@
                      </div>
                   </div>
                   <div class="col-auto">
-                     <a href="<?= base_url('pinjam/daftarBooking'); ?>"><i class="fas fa-shopping-cart fa-3x text-warning"></i></a>
+                     <a href="<?= base_url('periksa/daftarBooking'); ?>"><i class="fas fa-shopping-cart fa-3x text-warning"></i></a>
                   </div>
                </div>
             </div>

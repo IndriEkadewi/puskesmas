@@ -63,8 +63,12 @@
 <li class="nav-item active">
 <!-- Nav Item - transaksi -->
 <li class="nav-item">
-  <a href="<?= base_url('booking/daftarBooking') ?>" class="nav-link pb-0 text-white">
+  <a href="<?= base_url('periksa/daftarBooking') ?>" class="nav-link pb-0 text-white">
   <i class="fa fa-fw fa-list"></i> <span>Data Booking</span>
+</a>
+<li class="nav-item">
+  <a href="<?= base_url('periksa') ?>" class="nav-link pb-0 text-white">
+  <i class="fa fa-fw fa-list"></i> <span>Data Periksa</span>
 </a>
 </li>
 </li>

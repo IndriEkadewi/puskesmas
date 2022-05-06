@@ -114,6 +114,7 @@ class Booking extends CI_Controller {
       $isibooking = [
          'id_booking' => $this->ModelBooking->kodeOtomatis('booking', 'id_booking'),
          'tgl_booking' => date('Y-m-d H:m:s'),
+         'selesai_periksa' => date('Y-m-d', strtotime('+1 days', strtotime($tglsekarang))),
          'id_user' => $id_usr
       ];
 

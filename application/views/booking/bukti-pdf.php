@@ -4,26 +4,24 @@
 </head><body>
     <table style="border-collapse: collapse; width: 100%;" border="1" cellpadding="15">
         <tr>
-            <th colspan="5">Nama Anggota : <?= $useraktif[0]->nama ?></th>
+            <th colspan="5">Nama Pasien : <?= $useraktif[0]->nama ?></th>
         </tr>
         <tr>
-            <th colspan="5" align="left">Buku yang dibooking:</th>
+            <th colspan="5" align="left">Poli yang dibooking:</th>
         </tr>
         <tr>
             <th>No.</th>
-            <th>Judul Buku</th>
-            <th>Penulis</th>
-            <th>Penerbit</th>
-            <th>Tahun Terbit</th>
+            <th>Nama Poliklinik</th>
+            <th>Nama Dokter</th>
+            <th>Jadwal Praktek</th>
         </tr>
         
         <?php $no=1; foreach($items as $it) { ?>
         <tr>
             <td><?=$no++?></td>
-            <td><?=$it['judul_buku']?></td>
-            <td><?=$it['pengarang']?></td>
-            <td><?=$it['penerbit']?></td>
-            <td><?=$it['tahun_terbit']?></td>
+            <td><?=$it['nama_poli']?></td>
+            <td><?=$it['nama_dok']?></td>
+            <td><?=$it['jam_praktek']?></td>
         </tr>
         <?php } ?>
         <tr>

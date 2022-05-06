@@ -19,7 +19,7 @@
 
                 <tr>
                   <th nowrap>Jadwal Praktek: </th>
-                  <td nowrap><?= $poli->jam_praktek; ?></td>
+                  <td><?= $poli->jam_praktek; ?></td>
                   <td>&nbsp;</td>
                   <th>Tersedia: </th>
                   <td><?= $poli->stok ?></td>
