@@ -46,7 +46,7 @@ class Poli extends CI_Controller
             }
             $data = [
                 'nama_poli'    => $this->input->post('nama_poli', true),
-                'nama_dok'     => $this->input->post('nama_dok', true),
+                'dc'           => $this->input->post('dc', true),
                 'jam_praktek'  => $this->input->post('jam_praktek', true),
                 'stok'          => $this->input->post('stok', true),
                 'dibooking'     => 0,
@@ -72,6 +72,12 @@ class Poli extends CI_Controller
             'user'      => $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array(),
             'poli'      => $this->ModelPoli->poliWhere(['id' => $id])->result_array(),
         ];
+        $dokter = $this->ModelPoli->joinDokterPoli(['poli.id_dok' => $this->uri->segment(3)])->result_array();
+        foreach ($dokter as $d) {
+            $data['id'] = $d['id_dok'];
+            $data['nama_dok'] = $d['nama_dok'];
+        }
+        $data['dokter'] = $this->ModelPoli->getDokter()->result_array();
         //konfigurasi sebelum gambar diupload
         $config['upload_path']      = './assets/img/upload/';
         $config['allowed_types']    = 'jpg|png|jpeg';
@@ -99,7 +105,7 @@ class Poli extends CI_Controller
             }
             $data = [
                 'nama_poli'    => $this->input->post('nama_poli', true),
-                'nama_dok'     => $this->input->post('nama_dok', true),
+                'dc'           => $this->input->post('dc', true),
                 'jam_praktek'  => $this->input->post('jam_praktek', true),
                 'stok'          => $this->input->post('stok', true),
                 'dibooking'     => 0,
@@ -140,16 +146,6 @@ class Poli extends CI_Controller
             'min_length'       => 'email tidak valid.'
         ]);
 
-        //konfigurasi sebelum gambar diupload
-        $config['upload_path']      = './assets/img/upload/';
-        $config['allowed_types']    = 'jpg|png|jpeg';
-        $config['max_size']         = '3000';
-        $config['max_width']        = '1024';
-        $config['max_height']       = '1000';
-        $config['file_name']        = 'img' . time();
-
-        $this->load->library('upload', $config);
-
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -157,19 +153,12 @@ class Poli extends CI_Controller
             $this->load->view('poli/dokter', $data);
             $this->load->view('templates/footer');
         } else {
-            if ($this->upload->do_upload('image')) {
-                $image  = $this->upload->data();
-                $gambar = $image['file_name'];
-            } else {
-                $gambar = '';
-            }
             $data = [
                 'nama_dok'     => $this->input->post('nama_dok', true),
                 'ttl'          => $this->input->post('ttl', true),
                 'jenis_kel'    => $this->input->post('jenis_kel', true),
                 'alamat'       => $this->input->post('alamat', true),
                 'email'        => $this->input->post('email', true),
-                'image'        => $gambar
             ];
             $this->ModelPoli->simpanDokter($data);
             redirect('poli/dokter', 'refresh');
@@ -192,15 +181,6 @@ class Poli extends CI_Controller
             'dokter'      => $this->ModelPoli->dokterWhere(['id' => $id])->result_array(),
         ];
 
-        //konfigurasi sebelum gambar diupload
-        $config['upload_path']      = './assets/img/upload/';
-        $config['allowed_types']    = 'jpg|png|jpeg';
-        $config['max_size']         = '3000';
-        $config['max_width']        = '1024';
-        $config['max_height']       = '1000';
-        $config['file_name']        = 'img' . time();
-        
-        //memuat atau memanggil library upload
         $this->form_validation->set_rules('nama_dok', 'nama_dok', 'required|min_length[3]', [
             'required'      => 'Nama dokter harus diisi.',
             'min_length'    => 'Nama dokter terlalu pendek.'
@@ -221,7 +201,6 @@ class Poli extends CI_Controller
             'required'      => 'email harus diisi.',
             'min_length'       => 'email tidak valid.'
         ]); 
-        $this->load->library('upload', $config);
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -229,20 +208,12 @@ class Poli extends CI_Controller
             $this->load->view('poli/ubah_dokter', $data);
             $this->load->view('templates/footer');
         } else {
-            if ($this->upload->do_upload('image')) {
-                $image  = $this->upload->data();
-                unlink('assets/img/upload/' . $this->input->post('old_pict', TRUE));
-                $gambar = $image['file_name'];
-            } else {
-                $gambar = $this->input->post('old_pict', TRUE);
-            }
             $data = [
                 'nama_dok'    => $this->input->post('nama_dok', true),
                 'ttl'         => $this->input->post('ttl', true),
                 'jenis_kel'   => $this->input->post('jenis_kel', true),
                 'alamat'      => $this->input->post('alamat', true),
                 'email'       => $this->input->post('email', true),
-                'image'         => $gambar
             ];
             $this->ModelPoli->updateDokter($data, ['id' => $this->input->post('id')]);
             redirect('poli/dokter', 'refresh');
@@ -255,7 +226,7 @@ class Poli extends CI_Controller
             'required'      => 'Nama Poliklinik harus diisi.',
             'min_length'    => 'Nama Poliklinik terlalu pendek.'
         ]);
-        $this->form_validation->set_rules('nama_dok', 'nama_dok', 'required|min_length[3]', [
+        $this->form_validation->set_rules('dc', 'nama_dok', 'required|min_length[3]', [
             'required'      => 'Nama dokter harus diisi.',
             'min_length'    => 'Nama dokter terlalu pendek.'
         ]);

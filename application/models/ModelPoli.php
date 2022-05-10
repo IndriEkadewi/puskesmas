@@ -64,4 +64,14 @@ class ModelPoli extends CI_Model
     {
         $this->db->delete('dokter', $where);
     }
+
+    //join
+    public function joinDokterPoli($where)
+    {
+        $this->db->select('*');
+        $this->db->from('poli');
+        $this->db->join('dokter','dokter.id = poli.id');
+        $this->db->where($where);
+        return $this->db->get();
+    }
 }

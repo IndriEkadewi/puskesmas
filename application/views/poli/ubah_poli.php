@@ -14,7 +14,7 @@
                         <input type="text" class="form-control form-control-user" id="nama_poli" name="nama_poli" placeholder="Masukkan Nama Poliklinik" value="<?= $p['nama_poli']; ?>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="nama_dok" name="nama_dok" placeholder="Masukkan Nama Dokter" value="<?= $p['nama_dok']; ?>">
+                        <input type="text" class="form-control form-control-user" id="dc" name="dc" placeholder="Masukkan Nama Dokter" value="<?= $p['dc']; ?>">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="jam_praktek" name="jam_praktek" placeholder="Masukkan Jam Praktek" value="<?= $p['jam_praktek']; ?>">

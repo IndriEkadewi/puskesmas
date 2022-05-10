@@ -10,7 +10,7 @@
             <center>
               <table class="table table-striped">
                 <tr>
-                  <th nowrap>Nama Dokter: </th>
+                <th nowrap>Nama Dokter: </th>
                   <td nowrap><?= $poli->nama_dok; ?></td>
                   <td>&nbsp;</td>
                   <th>Dibooking: </th>
@@ -18,8 +18,8 @@
                 </tr>
 
                 <tr>
-                  <th nowrap>Jadwal Praktek: </th>
-                  <td><?= $poli->jam_praktek; ?></td>
+                <th nowrap>Jadwal Praktek: </th>
+                  <td><?= $poli->jam_praktek ?></td>
                   <td>&nbsp;</td>
                   <th>Tersedia: </th>
                   <td><?= $poli->stok ?></td>

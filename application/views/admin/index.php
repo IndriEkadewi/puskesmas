@@ -123,7 +123,7 @@
                   <tr>
                      <td><?= $i++; ?></td>
                      <td><?= $p['nama_poli']; ?></td>
-                     <td><?= $p['nama_dok']; ?></td>
+                     <td><?= $p['dc']; ?></td>
                      <td><?= $p['jam_praktek']; ?></td>
                      <td><?= $p['stok']; ?></td>
                   </tr>

@@ -76,7 +76,7 @@ class Periksa extends CI_Controller {
         $this->ModelPeriksa->deleteData('booking_detail', ['id_booking' => $id_booking]);
         //$this->db->query("DELETE FROM booking WHERE id_booking='$id_booking'");
 
-        //update dibooking dan dipperiksa pada tabel poli saat poli yang dibooking diambil untuk diperiksa
+        //update dibooking dan diperiksa pada tabel poli saat poli yang dibooking diambil untuk diperiksa
         $this->db->query("UPDATE poli, detail_periksa SET poli.diperiksa=poli.diperiksa+1, poli.dibooking=poli.dibooking-1 WHERE poli.id=detail_periksa.id_poli");
 
         $this->session->set_flashdata('pesan', '<div class="alert alert-message alert-success" role="alert">Data Periksa Berhasil Disimpan</div>');

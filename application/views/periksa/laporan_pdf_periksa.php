@@ -24,18 +24,17 @@
 	</style>
 </head>
 <body>
-	<h3 style="text-align: center;">LAPORAN DATA PEMINJAMAN BUKU</h3>
+	<h3 style="text-align: center;">LAPORAN DATA PEMERIKSAAN</h3>
 	<br/>
 	<table class="table-data">
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>Nama Anggota</th>
-				<th>Judul Buku</th>
-				<th>Tanggal Pinjam</th>
-				<th>Tanggal Kembali</th>
-				<th>Tanggal Pengembalian</th>
-				<th>Total Denda</th>
+				<th>Nama Pasien</th>
+				<th>Nama Poliklinik</th>
+				<th>Tanggal Daftar</th>
+				<th>Tanggal Selesai</th>
+				<th>Tanggal Pemeriksaan</th>
 				<th>Status</th>
 			</tr>
 		</thead>
@@ -44,19 +43,14 @@
 			<tr>
 				<th scope="row"><?= $no++ ?></th>
 				<td><?= $l['nama'] ?></td>
-				<td><?= $l['judul_buku'] ?></td>
-				<td><?= $l['tgl_pinjam'] ?></td>
+				<td><?= $l['nama_poli'] ?></td>
+				<td><?= $l['tgl_periksa'] ?></td>
 				<td><?= $l['tgl_kembali'] ?></td>
-				<td><?= $l['tgl_pengembalian'] ?></td>
-				<td><?= $l['total_denda'] ?></td>
+				<td><?= $l['tgl_selesai'] ?></td>
 				<td><?= $l['status'] ?></td>
 			</tr>
 			<?php } ?>
 		</tbody>
 	</table>
-
-	<script>
-		window.print();
-	</script>
 </body>
 </html>

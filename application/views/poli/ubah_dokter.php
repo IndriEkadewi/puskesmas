@@ -26,18 +26,6 @@
                         <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Masukkan Email Anda" value="<?= $d['email']; ?>">
                     </div>
                     <div class="form-group">
-                        <?php
-                        if (isset($d['image'])) { ?>
-                            <input type="hidden" name="old_pict" id="old_pict" value="<?= $d['image']; ?>">
-                            <picture>
-                                <source srcset="" type="image/svg+xml">
-                                <img src="<?= base_url('assets/img/upload/') . $d['image']; ?>" class="rounded mx-auto mb-3 d-blok" alt="...">
-                            </picture>
-                        <?php } ?>
-
-                        <input type="file" class="form-control form-control-user" id="image" name="image">
-                    </div>
-                    <div class="form-group">
                         <input type="button" class="form-control form-control-user btn btn-dark col-lg-3 mt-3" value="Kembali" onclick="window.history.go(-1)">
                         <input type="submit" class="form-control form-control-user btn btn-primary col-lg-3 mt-3" value="Update">
                     </div>

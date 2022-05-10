@@ -20,7 +20,7 @@
         <tr>
             <td><?=$no++?></td>
             <td><?=$it['nama_poli']?></td>
-            <td><?=$it['nama_dok']?></td>
+            <td><?=$it['dc']?></td>
             <td><?=$it['jam_praktek']?></td>
         </tr>
         <?php } ?>

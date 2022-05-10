@@ -20,7 +20,7 @@
                             <td>
                                 <img src="<?= base_url('assets/img/upload/'.$it['image']) ?>" class="rounded" alt="No Picture" height="40">
                             </td>
-                            <td nowrap><?= $it['nama_dok'] ?></td>
+                            <td nowrap><?= $it['dc'] ?></td>
                             <td nowrap><?= $it['jam_praktek'] ?></td>
                         </tr>
                     <?php } ?>

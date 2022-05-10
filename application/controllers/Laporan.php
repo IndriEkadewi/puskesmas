@@ -47,47 +47,47 @@ class Laporan extends CI_Controller {
       $this->load->view('poli/export_excel_poli', $data);
    }
 
-   public function laporan_pinjam() {
+   public function laporan_periksa() {
       $data = [
-         'judul'     => 'Laporan Data Pinjam',
+         'judul'     => 'Laporan Data Periksa',
          'user'      => $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array(),
-         'laporan'   => $this->db->query("SELECT * FROM pinjam p, detail_pinjam d, buku b, user u WHERE d.id_buku=b.id AND p.id_user=u.id AND p.no_pinjam=d.no_pinjam")->result_array()
+         'laporan'   => $this->db->query("SELECT * FROM periksa pr, detail_periksa d, poli p, user u WHERE d.id_poli=p.id AND pr.id_user=u.id AND pr.no_periksa=d.no_periksa")->result_array()
       ];
 
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
       $this->load->view('templates/topbar', $data);
-      $this->load->view('pinjam/laporan-pinjam', $data);
+      $this->load->view('periksa/laporan-periksa', $data);
       $this->load->view('templates/footer');
    }
 
-   public function cetak_laporan_pinjam() {
+   public function cetak_laporan_periksa() {
       $data = [
-         'judul' => 'Cetak Data Laporan Peminjaman Buku',
-         'laporan'   => $this->db->query("SELECT * FROM pinjam p, detail_pinjam d, buku b, user u WHERE d.id_buku=b.id AND p.id_user=u.id AND p.no_pinjam=d.no_pinjam")->result_array()
+         'judul' => 'Cetak Data Laporan Pemeriksaan Pasien',
+         'laporan'   => $this->db->query("SELECT * FROM periksa pr, detail_periksa d, poli p, user u WHERE d.id_poli=p.id AND pr.id_user=u.id AND pr.no_periksa=d.no_periksa")->result_array()
       ];
 
-      $this->load->view('pinjam/laporan-print-pinjam', $data);
+      $this->load->view('periksa/laporan-print-periksa', $data);
    }
 
-   public function laporan_pinjam_pdf() {
+   public function laporan_periksa_pdf() {
       $data = [
-         'judul' => 'Laporan Peminjaman Buku - PDF',
-         'laporan'   => $this->db->query("SELECT * FROM pinjam p, detail_pinjam d, buku b, user u WHERE d.id_buku=b.id AND p.id_user=u.id AND p.no_pinjam=d.no_pinjam")->result_array()
+         'judul' => 'Laporan Data Periksa - PDF',
+         'laporan'   => $this->db->query("SELECT * FROM periksa pr, detail_periksa d, poli p, user u WHERE d.id_poli=p.id AND pr.id_user=u.id AND pr.no_periksa=d.no_periksa")->result_array()
       ];
 
-      $filename = 'Laporan-peminjaman-';
+      $filename = 'Laporan-pemeriksaan-';
       $filename .= trim(substr(md5(date('Y-m-d H:i:s', time())), 0, 10));
 
       // Dompdf Print
-      $this->dompdf_gen->print('pinjam/laporan_pdf_pinjam',$data, $filename, 'A4', 'landscape');
+      $this->dompdf_gen->print('periksa/laporan_pdf_periksa',$data, $filename, 'A4', 'landscape');
    }
 
-   public function export_excel_pinjam() {
-      $data['judul'] = 'Laporan Data Peminjaman Buku';
-      $data['namafile'] = 'Laporan-Peminjaman-Buku-'.date('YmdHis').'.xls';
-      $data['laporan'] = $this->db->query("SELECT * FROM pinjam p, detail_pinjam d, buku b, user u WHERE d.id_buku=b.id AND p.id_user=u.id AND p.no_pinjam=d.no_pinjam")->result_array();
-      $this->load->view('pinjam/export-excel-pinjam', $data);
+   public function export_excel_periksa() {
+      $data['judul'] = 'Laporan Data Pemeriksaan PAasien';
+      $data['namafile'] = 'Laporan-Periksa-Pasien-'.date('YmdHis').'.xls';
+      $data['laporan'] = $this->db->query("SELECT * FROM periksa pr, detail_periksa d, poli p, user u WHERE d.id_poli=p.id AND pr.id_user=u.id AND pr.no_periksa=d.no_periksa")->result_array();
+      $this->load->view('periksa/export-excel-periksa', $data);
    }
 
    public function laporan_anggota() {

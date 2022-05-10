@@ -27,7 +27,7 @@
                                 <button type="submit" class="btn btn-sm btn-outline-info"><i class="fas fa-fw fa-cart-plus"></i> Periksa</button>
                             </td>
                             <td>
-                                <input type="text" class="form-check-user rounded-sm" style="width: 100px" name="lama" id="lama" value="1">
+                                <input type="text" class="form-check-user rounded-sm" style="width: 100px" name="lama" id="lama" value="0">
                                 <?= form_error() ?>
                             </td>
                         </form>

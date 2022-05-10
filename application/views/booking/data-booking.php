@@ -17,7 +17,7 @@
                             <td>
                                 <img src="<?= base_url('assets/img/upload/'.$tmp['image']) ?>" class="rounded" alt="No Picture" height="40">
                             </td>
-                            <td nowrap><?=$tmp['nama_dok']?></td>
+                            <td nowrap><?=$tmp['dc']?></td>
                             <td nowrap><?=$tmp['jam_praktek']?></td>
                             <td>
                                 <a class="btn btn-sm btn-outline-danger" href="<?= base_url('booking/hapusbooking/'.$tmp['id_poli']) ?>" onclick="return_konfirm('Yakin tidak jadi booking?'<?= $tmp['nama_poli']?>)">

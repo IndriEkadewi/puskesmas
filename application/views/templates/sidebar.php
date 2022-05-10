@@ -96,6 +96,10 @@
   <a href="<?= base_url('laporan/laporan_poli') ?>" class="nav-link pb-0 text-white">
   <i class="fa fa-fw fa-address-book"></i><span>Laporan Poliklinik</span>
 </a>
+<li class="nav-item">
+  <a href="<?= base_url('laporan/laporan_periksa') ?>" class="nav-link pb-0 text-white">
+  <i class="fa fa-fw fa-address-book"></i><span>Laporan Periksa</span>
+</a>
 </li>
 </li>
 

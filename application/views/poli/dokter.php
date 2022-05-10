@@ -17,7 +17,6 @@
                         <th scope="col">Jenis Kelamin</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Gambar</th>
                         <th scope="col">Pilihan</th>
                     </tr>
                 </thead>
@@ -32,12 +31,6 @@
                         <td><?= $d['jenis_kel']; ?></td>
                         <td><?= $d['alamat']; ?></td>
                         <td><?= $d['email']; ?></td>
-                        <td>
-                            <picture>
-                                <source srcset="" type="image/svg+xml">
-                                <img src="<?= base_url('assets/img/upload/') . $d['image'];?>" class="img-fluid img-thumbnail" alt="...">
-                            </picture>
-                        </td>
                         <td>
                             <a href="<?= base_url('poli/ubahDokter/').$d['id'];?>" class="badge badge-info"><i class="fas fa-edit"></i> Ubah</a>
                             <a href="<?= base_url('poli/hapusDokter/').$d['id'];?>" onclick="return confirm('Kamu yakin akan menghapus <?= $judul.' '.$d['nama_dok'];?> ?');" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
@@ -78,9 +71,6 @@
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Masukkan Email Anda">
-                    </div>
-                    <div class="form-group">
-                        <input type="file" class="form-control form-control-user" id="image" name="image">
                     </div>
                 </div>
                 <div class="modal-footer">

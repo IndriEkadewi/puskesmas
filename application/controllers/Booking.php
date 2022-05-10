@@ -27,7 +27,7 @@ class Booking extends CI_Controller {
          $this->session->set_flashdata('pesan', '<div class="alert alert-message alert-danger" role="alert">Tidak Ada Buku dikeranjang</div>');
          redirect(base_url());
       } else {
-         $data['temp'] = $this->ModelBooking->tempList('image, nama_poli, nama_dok, jam_praktek, id_poli', ['id_user' => $id_user])->result_array();
+         $data['temp'] = $this->ModelBooking->tempList('image, nama_poli, dc, jam_praktek, id_poli', ['id_user' => $id_user])->result_array();
       }
 
       $this->load->view('templates/templates-user/header', $data);
@@ -49,7 +49,7 @@ class Booking extends CI_Controller {
          'email_user' => $this->session->userdata('email'),
          'tgl_booking' => date('Y-m-d H:i:s'),
          'image' => $d_poli->image,
-         'nama_dok' => $d_poli->nama_dok,
+         'dc' => $d_poli->dc,
          'jam_praktek' => $d_poli->jam_praktek
       ];
 
@@ -64,19 +64,19 @@ class Booking extends CI_Controller {
       $databooking = $this->db->query("SELECT * FROM booking WHERE id_user='$userid'")->num_rows();
 
       if ($databooking > 0) {
-         $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Masih Ada booking buku sebelumnya yang belum diambil.<br> Ambil Buku yang dibooking atau tunggu 1x24 Jam untuk bisa booking kembali </div>');
+         $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Masih Ada booking poli sebelumnya yang belum diambil.<br> Poli yang dibooking atau tunggu 1x24 Jam untuk bisa booking kembali </div>');
          redirect(base_url());
       }
 
       // Jika poli yang di klik booking sudah ada di keranjang
       if ($temp > 0) {
-         $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Buku ini sudah anda booking </div>');
+         $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Poli ini sudah anda booking </div>');
          redirect(base_url().'home');
       }
 
       // Jika poli yang di booking sudah mencapai 1 item
       if ($tempuser == 1) {
-         $this->session->set_flashdata('pesan','<div class="alert alert-danger alert-message" role="alert">Booking Buku Tidak Boleh Lebih dari 3</div>');
+         $this->session->set_flashdata('pesan','<div class="alert alert-danger alert-message" role="alert">Booking Poli Tidak Boleh Lebih dari 1</div>');
          redirect(base_url().'home');
       }
       
@@ -84,8 +84,8 @@ class Booking extends CI_Controller {
       $this->ModelBooking->createTemp();
       $this->ModelBooking->insertData('temp', $isi);
 
-      // Pesan jika berhasil memasukkan buku ke keranjang
-      $this->session->set_flashdata('pesan','<div class="alert alert-success alert-message" role="alert">Buku berhasil ditambahkan ke keranjang </div>');
+      // Pesan jika berhasil mendaftar pada poliklinik
+      $this->session->set_flashdata('pesan','<div class="alert alert-success alert-message" role="alert">Anda berhasil melakukan pendaftaran Poli </div>');
       redirect(base_url().'home');
    }
 
@@ -98,7 +98,7 @@ class Booking extends CI_Controller {
       $kosong = $this->db->query("SELECT * FROM temp WHERE id_user='$id_user'")->num_rows();
 
       if ($kosong < 1) {
-         $this->session->set_flashdata('pesan', '<div class="alert alert-message alert-danger" role="alert">Tidak Ada Buku Di Keranjang!</div>');
+         $this->session->set_flashdata('pesan', '<div class="alert alert-message alert-danger" role="alert">Tidak Ada poli yang anda pilih!</div>');
          redirect(base_url());
       } else {
          redirect(base_url('booking'));
@@ -106,7 +106,7 @@ class Booking extends CI_Controller {
    }
 
    public function bookingSelesai($id_usr) {
-      // Menupdate stok dan dibooking di tabel buku saat proses booking diselesaikan
+      // Menupdate stok dan dibooking di tabel poli saat proses booking diselesaikan
 
       $this->db->query("UPDATE poli, temp SET poli.dibooking=poli.dibooking+1, poli.stok=poli.stok-1 WHERE poli.id=temp.id_poli");
 

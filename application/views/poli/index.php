@@ -28,7 +28,7 @@
                     <tr>
                         <th scope="row"><?= $a++; ?></th>
                         <td><?= $p['nama_poli']; ?></td>
-                        <td><?= $p['nama_dok']; ?></td>
+                        <td><?= $p['dc']; ?></td>
                         <td><?= $p['stok']; ?></td>
                         <td><?= $p['jam_praktek']; ?></td>
                         <td><?= $p['dibooking']; ?></td>
@@ -68,7 +68,7 @@
                         <input type="text" class="form-control form-control-user" id="nama_poli" name="nama_poli" placeholder="Masukkan Nama Poliklinik">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="nama_dok" name="nama_dok" placeholder="Masukkan Nama Dokter">
+                        <input type="text" class="form-control form-control-user" id="dc" name="dc" placeholder="Masukkan Nama Dokter">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="jam_praktek" name="jam_praktek" placeholder="Masukkan Jam Praktek">
