@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+
+<head>
     <title><?= $judul ?></title>
-</head><body>
+</head>
+
+<body>
     <table style="border-collapse: collapse; width: 100%;" border="1" cellpadding="15">
         <tr>
-            <th colspan="5">Nama Pasien : <?= $useraktif[0]->nama ?></th>
+            <th colspan="4">Nama Pasien : <?= $useraktif[0]->nama ?></th>
         </tr>
         <tr>
-            <th colspan="5" align="left">Poli yang dibooking:</th>
+            <th colspan="4" align="left">Poli yang dibooking:</th>
         </tr>
         <tr>
             <th>No.</th>
@@ -23,10 +27,11 @@
             <td><?=$it['dc']?></td>
             <td><?=$it['jam_praktek']?></td>
         </tr>
-        <?php } ?>
+        
         <tr>
-            <td colspan="5" align="center"><?= substr(md5(date('d M Y H:i:s')), 0, 10); ?></td>
-        </tr>
+            <td colspan="4" align="center"> Antrian Ke-  <?= $it['antrian'] ?></td>
+        </tr><?php } ?>
     </table>
     
-</body></html>
+</body>
+</html>

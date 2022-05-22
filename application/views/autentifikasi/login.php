@@ -34,9 +34,6 @@
             <div class="text-center">
                 <a class="small text-dark" href="<?=base_url('autentifikasi/lupaPassword'); ?>">Lupa Password?</a>
             </div>
-            <div class="text-center">
-                <a class="small text-dark" href="<?=base_url('autentifikasi/registrasi'); ?>">Daftar Member!</a>
-            </div>
         </div>
     </div>
 </div>

@@ -45,7 +45,7 @@ class ModelPoli extends CI_Model
          return $this->db->get('dokter');
     }
          
-    public function dokterWhere($where)
+    public function  getDokterWhere($where)
     {
         return $this->db->get_where('dokter', $where);
     }

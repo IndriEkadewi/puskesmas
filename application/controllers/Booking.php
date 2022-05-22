@@ -36,11 +36,13 @@ class Booking extends CI_Controller {
       $this->load->view('templates/templates-user/footer');
    }
 
-   public function tambahBooking() {
+   public function tambahBooking() 
+   {
       $id_poli = $this->uri->segment(3);
-      // Memilih data buku yang di masukkan ke tabel temp/keranjang melalui variabel $isi
-      $d_poli = $this->db->query("SELECT * FROM poli WHERE id='$id_poli'")->row();
+      // Memilih data poli yang di masukkan ke tabel temp melalui variabel $isi
+      $d_poli = $this->db->query("SELECT * FROM poli WHERE id='$id_poli'")->row(); 
       
+
       // Data yang akan disimpan ke tabel temp
       $isi = [
          'id_poli' => $id_poli,
@@ -50,10 +52,10 @@ class Booking extends CI_Controller {
          'tgl_booking' => date('Y-m-d H:i:s'),
          'image' => $d_poli->image,
          'dc' => $d_poli->dc,
-         'jam_praktek' => $d_poli->jam_praktek
+         'jam_praktek' => $d_poli->jam_praktek,
       ];
 
-      // Cek apakah buku yang di klik booking sudah ada di keranjang
+      // Cek apakah poli yang di klik booking sudah ada
       $temp = $this->ModelBooking->getDataWhere('temp', ['id_poli' => $id_poli])->num_rows();
       $userid = $this->session->userdata('id_user');
 
@@ -68,7 +70,7 @@ class Booking extends CI_Controller {
          redirect(base_url());
       }
 
-      // Jika poli yang di klik booking sudah ada di keranjang
+      // Jika poli yang di klik booking sudah ada
       if ($temp > 0) {
          $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Poli ini sudah anda booking </div>');
          redirect(base_url().'home');
@@ -110,12 +112,29 @@ class Booking extends CI_Controller {
 
       $this->db->query("UPDATE poli, temp SET poli.dibooking=poli.dibooking+1, poli.stok=poli.stok-1 WHERE poli.id=temp.id_poli");
 
+      $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+      $id_user = $data['user'];
+      $tgl =  date('Y-m-d');
+
+      $tanggal_booking = $this->db->query("SELECT * FROM booking WHERE tgl_booking='$tgl'")->row_array();
+
+      // cek antrian
+
+      if ($tanggal_booking == null) {
+         $antrian = 1;
+      } else if ($tanggal_booking['antrian'] != null) {
+         $cek_antrian = $this->db->query("SELECT max(antrian) as antrian FROM booking WHERE tgl_booking='$tgl'")->row_array();
+         $antrian = $cek_antrian['antrian'] + 1;
+      };
+
       $tglsekarang = date('Y-m-d');
       $isibooking = [
          'id_booking' => $this->ModelBooking->kodeOtomatis('booking', 'id_booking'),
          'tgl_booking' => date('Y-m-d H:m:s'),
          'selesai_periksa' => date('Y-m-d', strtotime('+1 days', strtotime($tglsekarang))),
-         'id_user' => $id_usr
+         'id_user' => $id_usr,
+         'antrian' => $antrian
       ];
 
       // Menyimpan ke tabel booking dan detail booking, dan mengosongkan tabel temporary

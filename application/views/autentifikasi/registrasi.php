@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success btn-user btn-block">
-                            Daftar Menjadi Pasien
+                            Daftar Menjadi Admin
                         </button>
                     </form>
                     <hr>
@@ -65,7 +65,7 @@
                         <a class="small text-dark" href="<?= base_url('autentifikasi/lupaPassword'); ?>">Lupa Password?</a>
                     </div>
                     <div class="text-center">
-                        Sudah Menjadi Pasien?<a class="small text-dark" href="<?= base_url('autentifikasi'); ?>">Login!</a>
+                        Sudah Menjadi Admin?<a class="small text-dark" href="<?= base_url('autentifikasi'); ?>">Login!</a>
                     </div>
         </div>
     </div>

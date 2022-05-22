@@ -16,7 +16,7 @@
                   <?php if ($poli->stok < 1) { ?>
                     <i class="btn btn-outline-primary fas fw fa-shopping-cart">Booking&nbsp;&nbsp; 0</i>
                   <?php } else { ?>
-                    <a class="btn btn-success fas fw fa-shopping-cart" href="<?= base_url('booking/tambahBooking/' . $poli->id) ?>">Booking</a>
+                    <a class="btn btn-success fas fw fa-shopping-cart" href="<?= base_url('booking/tambahBooking/' . $poli->id.'/'. date('Y-m-d')) ?>">Booking</a>
                   <?php } ?>
                   <a class="text-white btn btn-warning fas fw fa-search" href="<?= base_url('detail-poli/' . $poli->id) ?>">Detail</a>
                 </p>

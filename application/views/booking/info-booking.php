@@ -2,7 +2,8 @@
     <div class="row">
         <div class="col-sm-12 col-md-11 m-auto">
             <h5>Terima Kasih <b><?= $useraktif[0]->nama?></b></h5>
-            <p>Anda telah terdaftar untuk berobat pada hari ini</p>
+            <p>Anda telah terdaftar untuk berobat pada hari ini.</p>
+            <p>Silahkan cetak PDF untuk mengetahui NO Antrian Anda!</p>
         </div>
         <div class="col-sm-12 col-md-11 m-auto">
             <div class="table-responsive">
