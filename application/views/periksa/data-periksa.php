@@ -10,7 +10,6 @@
                   <td>ID Poli</td>
                   <td>Tanggal Selesai</td>
                   <td>Tanggal Pemeriksaan</td>
-                  <td>Terlambat</td>
                   <td>Status</td>
                   <td>Pilihan</td>
                </tr>
@@ -26,20 +25,7 @@
                         <?= date('Y-m-d') ?>
                         <input type="hidden" name="tgl_selesai" id="tgl_selesai" value="<?= date('Y-m-d') ?>">
                      </td>
-                     <td>
-                        <?php 
-                           $tgl1 = new DateTime($pr['tgl_kembali']);
-                           $tgl2 = new DateTime();
-
-                           if (date('Y-m-d') > $pr['tgl_kembali']) {
-                              $selisih = $tgl2->diff($tgl1)->format("%a");  
-                           } else {
-                              $selisih = 0;
-                           }
-                           
-                           echo $selisih;
-                        ?> Hari
-                     </td>
+                    
                      <?php if($pr['status'] == 'Periksa') { $status ='warning'; } else { $status = 'secondary'; } ?>
                      <td><i class="<?= "btn btn-outline-".$status ?>"><?= $pr['status'] ?></i></td>
                      <td nowrap>

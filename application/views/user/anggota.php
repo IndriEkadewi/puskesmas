@@ -8,7 +8,7 @@
                 <thead>                    
                     <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Nama Anggota</th>
+                                    <th scope="col">Nama Pasien</th>
                                     <th scope="col">Alamat</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Role ID</th>

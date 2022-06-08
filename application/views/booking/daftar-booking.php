@@ -24,7 +24,7 @@
                         <td><?= $p['id_user'] ?></td>
                         <form action="<?= base_url('periksa/periksaAct/'.$p['id_booking']) ?>" method="post">
                             <td nowrap>
-                                <button type="submit" class="btn btn-sm btn-outline-info"><i class="fas fa-fw fa-cart-plus"></i> Periksa</button>
+                                <button type="submit" class="btn btn-sm btn-outline-info"><i class="fas fa-fw fa-edit"></i> Periksa</button>
                             </td>
                             <td>
                                 <input type="text" class="form-check-user rounded-sm" style="width: 100px" name="lama" id="lama" value="0">

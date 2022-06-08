@@ -20,16 +20,16 @@
       </div>
 
       <div class="col-xl-3 col-md-6 mb-4">
-         <div class="card border-left-danger shadow h-100 py-2 bg-success">
+         <div class="card border-left-primary shadow h-100 py-2 bg-success">
             <div class="card-body">
                <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                      <div class="text-md font-weight-bold text-white text-uppercase mb-1">Jumlah Dokter</div>
                      <div class="h1 mb-0 font-weight-bold text-white">
-                        <?= $this->ModelPoli->getDokterWhere(['dokter'])->num_rows(); ?></div>
+                        <?= $this->ModelPoli->DokterWhere(['dokter'])->num_rows(); ?></div>
                   </div>
                   <div class="col-auto">
-                     <a href="<?= base_url('poli/dokter'); ?>"><i class="fas fa-users fa-3x text-dark"></i></a>
+                     <a href="<?= base_url('poli/dokter'); ?>"><i class="fas fa-users fa-3x text-warning"></i></a>
                   </div>
                </div>
             </div>
@@ -37,7 +37,7 @@
       </div>
 
       <div class="col-xl-3 col-md-6 mb-4">
-         <div class="card border-left-primary shadow h-100 py-2 bg-secondary">
+         <div class="card border-left-warning shadow h-100 py-2 bg-info">
             <div class="card-body">
                <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
@@ -50,14 +50,14 @@
                      </div>
                   </div>
                   <div class="col-auto">
-                     <a href="<?= base_url('poli'); ?>"><i class="fas fa-book fa-3x text-warning"></i></a>
+                     <a href="<?= base_url('poli'); ?>"><i class="fas fa-book fa-3x text-danger"></i></a>
                   </div>
                </div>
             </div>
          </div>
       </div>
       <div class="col-xl-3 col-md-6 mb-4">
-         <div class="card border-left-warning shadow h-100 py-2 bg-danger">
+         <div class="card border-left-primary shadow h-100 py-2 bg-success">
             <div class="card-body">
                <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
@@ -70,7 +70,7 @@
                      </div>
                   </div>
                   <div class="col-auto">
-                     <a href="<?= base_url('periksa/daftarBooking'); ?>"><i class="fas fa-shopping-cart fa-3x text-warning"></i></a>
+                     <a href="<?= base_url('periksa/daftarBooking'); ?>"><i class="fas fa-newspaper fa-3x text-warning"></i></a>
                   </div>
                </div>
             </div>

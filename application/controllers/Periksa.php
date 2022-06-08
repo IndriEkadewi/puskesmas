@@ -68,13 +68,11 @@ class Periksa extends CI_Controller {
 
         $this->ModelPeriksa->simpanPeriksa($databooking);
         $this->ModelPeriksa->simpanDetail($id_booking, $no_periksa);
-        //$denda = $this->input->post('denda', TRUE);
-        //$this->db->query("UPDATE detail_pinjam SET denda='$denda'");
 
         //hapus Data booking yang pasiennya diambil untuk diperiksa
         $this->ModelPeriksa->deleteData('booking', ['id_booking' => $id_booking]);
         $this->ModelPeriksa->deleteData('booking_detail', ['id_booking' => $id_booking]);
-        //$this->db->query("DELETE FROM booking WHERE id_booking='$id_booking'");
+
 
         //update dibooking dan diperiksa pada tabel poli saat poli yang dibooking diambil untuk diperiksa
         $this->db->query("UPDATE poli, detail_periksa SET poli.diperiksa=poli.diperiksa+1, poli.dibooking=poli.dibooking-1 WHERE poli.id=detail_periksa.id_poli");
@@ -86,7 +84,6 @@ class Periksa extends CI_Controller {
     public function ubahStatus() {
         $id_poli = $this->uri->segment(3);
         $no_periksa = $this->uri->segment(4);
-        //$where = ['id_poli' => $this->uri->segment(3)];
 
         $tgl = date('Y-m-d');
         $status = 'Selesai';
@@ -94,9 +91,8 @@ class Periksa extends CI_Controller {
         //update status menjadi kembali pada saat pasien diperiksa
         $this->db->query("UPDATE periksa, detail_periksa SET periksa.status='$status', periksa.tgl_selesai='$tgl' WHERE detail_periksa.id_poli='$id_poli' AND periksa.no_periksa='$no_periksa'");
 
-        //update stok dan dipinjam pada tabel poli
+        //update stok dan diperiksa pada tabel poli
         $this->db->query("UPDATE poli, detail_periksa SET poli.diperiksa=poli.diperiksa-1, poli.stok=poli.stok+1 WHERE poli.id=detail_periksa.id_poli");
-
         $this->session->set_flashdata('pesan', '<div class="alert alert-message alert-success" role="alert"></div>');
         redirect(base_url('periksa'));
     }
